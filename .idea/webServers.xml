@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="32036180-06bc-4865-9982-3dbaba605500" name="aula.gruporo.com.mx" url="http://aula.gruporo.com.mx">
+        <fileTransfer host="aula.gruporo.com.mx" port="22" rootFolder="/var/www/aula.gruporo.com.mx" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
