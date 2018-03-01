@@ -211,7 +211,7 @@ function claro_html_button($url, $text, $confirmMessage = '')
     }
 
     return '<a href="'.$url.'">'
-    . '<input type="button" onclick="' . $onClickCommand . '" '
+    . '<input type="button" class="btn btn-primary" onclick="' . $onClickCommand . '" '
     .      'value="'.$text.'" />'
     .      '</a>' . "\n"
     ;

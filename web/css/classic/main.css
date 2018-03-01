@@ -20,9 +20,12 @@ html, body {
 
 body {
     color: #444;
-    background: #FFF;
+    background-color: #e9e9e9;
+    /*background: #FFF;*/
     text-align: left;
-    font-family: Arial, Verdana, Helvetica, Sans-Serif;
+    /*font-family: Arial, Verdana, Helvetica, Sans-Serif;*/
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 a:link, a:visited {
@@ -109,14 +112,14 @@ input, textarea, select {
 }
 
 input[type=submit], input[type=reset], input[type=button], button {
-    margin: 5px 0 0 0;
+    /*margin: 5px 0 0 0;
     padding: 1px 0.5em;
     border: 1px solid #114477;
     background: url(img/bg_button.png) repeat-x top #336699;
     box-shadow: none;
     color: #FFF;
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer;*/
 }
 
 input[type=submit]:hover, button:hover, input[type=button]:hover {
@@ -240,16 +243,29 @@ table.multiselect option.hidden {
 ******************************************************************************/
 
 #claroPage {
-    
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(120,120,120,0.42);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(120,120,120,0.42);
+    box-shadow: 0px 0px 3px 1px rgba(120,120,120,0.42);
+    margin-bottom: 7%;
+    background-color: white;
 }
 
+@media (min-width: 576px) {
+    #claroPage {
+        padding: 0;
+    }
+}
 
 /******************************************************************************
                         CLAROLINE HEADER
 ******************************************************************************/
 
 #topBanner {
-    background: url(img/bg_header.gif) repeat-x scroll left top #C5D4E2;
+    background: url(img/bgheader.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    border-bottom: 1px solid #d6d6d6;
 }
 
 /*-----------------------------------------------------------------------------
@@ -294,21 +310,45 @@ table.multiselect option.hidden {
 /*-----------------------------------------------------------------------------
                         CAMPUS BANNER
 -----------------------------------------------------------------------------*/
+.logoaula{
+    width: 174px;
+    float: left;
+}
+.logorh{
+    float: right;
+    /*width: 70px;*/
+    width: 270px;
+    margin-top: 8px;
+}
+
 
 #campusBannerRight {
+    /*float: right;
+    text-align: right;
+    margin-top: -1px;
+    padding: 5px;
+    margin: 0;
+    width: 74px;
+    height: 60px;*/
+}
+
+#campusBannerLeft {
+    /*float: left;
+    text-align: left;
+    margin-top: -1px;
+    padding: 5px 0px;
+    margin: 0;
+    width: 15%;
+    height: 60px;*/
+}
+.fracerh{
     float: right;
     text-align: right;
     margin-top: -1px;
     padding: 5px;
     margin: 0;
-}
-
-#campusBannerLeft {
-    float: left;
-    text-align: left;
-    margin-top: -1px;
-    padding: 5px 0px;
-    margin: 0;
+    top: 24px;
+    position: relative;
 }
 
 
@@ -317,15 +357,17 @@ table.multiselect option.hidden {
 -----------------------------------------------------------------------------*/
 
 #userBanner {
-    height: 30px;
+    /*height: 30px;
     margin: 0;
     padding: 0 15px;
     border: 0;
+    overflow: hidden;
+    */
     color: #999;
     font-weight: bold;
     font-size: 0.8em;
     text-align: left;
-    overflow: hidden;
+
 }
 
 #userBanner a,
@@ -341,25 +383,35 @@ table.multiselect option.hidden {
     text-decoration: none;
 }
 
-#userBannerRight {
+#userBannerRight ul.menu {
     float: right;
 }
 
-#userBannerLeft {
+#userBannerLeft ul.menu {
     float: left;
 }
 
 #userBanner ul.menu {
-    list-style-type: none;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+    display: table;
+    z-index: 3000;
+    /*display: table-cell;*/
+    vertical-align: middle;
+    /*float: right;*/
+    /*list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0;*/
     border: 0;
     text-indent: 0;
 }
 
 #userBanner ul.menu li {
+    display: table-cell;
+    vertical-align: middle;
     float: left;
-    display: block;
+    /*display: block;*/
     margin: 0;
     padding: 0;
     height: 30px;
@@ -394,6 +446,8 @@ table.multiselect option.hidden {
     border: none;
     padding : 10px 15px 5px 15px;
     background: #fff;
+    width: 100%;
+    margin: 0 auto;
 }
 
 #breadcrumbLine hr {
@@ -486,16 +540,17 @@ li.lastBreadCrumbsNode {
 }
 
 #rightSidebar {
-    width: 220px;
+    /*width: 220px;
     padding-left: 5px;
     margin: 0;
     float: right;
-    border-left: #DDDDDD solid 1px;
+    border-left: #DDDDDD solid 1px;*/
 }
 
 #leftContent {
-    padding: 0;
-    margin-right: 240px;
+    /*padding: 0;
+    margin-right: 240px;*/
+    display: flex;
 }
 
 
@@ -508,7 +563,8 @@ li.lastBreadCrumbsNode {
     padding: 15px 15px;
     font-size: 0.7em;
     color: #666;
-    background: url(img/bg_footer.jpg) repeat-x top left #fff;
+    border-top: 1px solid #d7d7d7;
+    /*background: url(img/bg_footer.jpg) repeat-x top left #fff;*/
 }
 
 #campusFooter a:link,
@@ -545,9 +601,10 @@ li.lastBreadCrumbsNode {
 
 
 #campusFooterCenter .poweredBy {
-    padding-left: 20px;
+    padding-left: 3px;
     font-style: italic;
-    background: url(img/claroline.png) no-repeat left center;
+    background: url(img/grupo-ro-logo.png) no-repeat left center;
+    background-size: contain;
 }
 
 
@@ -904,7 +961,7 @@ dl.courseList dl {
 }
 
 .toolTitleBlock .mainTitle {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     height: 100%;
     padding-right: 5px;
     font-weight: normal;
@@ -939,7 +996,7 @@ ul.commandList li {
 
 ul.commandList li a {
     display: block;
-    height: 16px;
+    /*height: 16px;*/
     margin: 0 0 3px 0;
     padding: 0;
     border: 5px solid #DDD;
@@ -1130,10 +1187,11 @@ th .claroCmdDisabled {
 .blockHeader {
     color: #444;
     font-weight: bold;
-    padding: 2px 5px 2px 5px;
+    /*padding: 2px 5px 2px 5px;*/
+    padding:8px 5px 7px 5px;
     margin: 0;
     background: #DDDDDD;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #b3b3b3;
 }
 
 .claroBlockSuperHeader {
@@ -1151,8 +1209,11 @@ th .claroCmdDisabled {
 h1.blockHeader, 
 h2.blockHeader, 
 h3.blockHeader {
-    font-size: 1em;
-    text-transform: none;
+    /*font-size: 1em;
+    text-transform: none;*/
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5em;
 }
 
 .claroBlockContent {
@@ -1467,8 +1528,9 @@ h3.blockHeader {
 
 /* specific styling for dialog box messages */
 .claroDialogBox {
-    margin: 0 0 15px 0; 
-    padding: 5px 85px 5px 10px; 
+    margin: 0 0 15px 0;
+    padding: 0px 0px 5px 0px;
+    /*padding: 5px 85px 5px 10px;*/
     border: 1px solid #DDDDDD;
     border-left: 5px solid #DDDDDD;
     background: #F9F7ED;
@@ -1772,4 +1834,10 @@ td.userCourseList {padding-left: 20px;}
 .backLink {
     padding-left: 20px;
     background: url(img/back.png) no-repeat left center; 
+}
+
+
+
+.userCommands{
+    display:block;
 }

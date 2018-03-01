@@ -292,7 +292,7 @@ class ToolTitle implements Display
                 . '</ul>' . "\n";
         }
 
-        $out = '<div class="toolTitleBlock">';
+        $out = '<div class="toolTitleBlock row">';
 
         // Title parts
         if ( !empty ( $this->superTitle ) )
@@ -309,11 +309,11 @@ class ToolTitle implements Display
             $style = '';
         }
 
-        $out .= '<table><tr><td>'
+        $out .= '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><table><tr><td>'
             . '<h1 class="toolTitle mainTitle"' . $style . '>' . $this->mainTitle . '</h1>' . "\n"
             . '</td><td>'
             . $commandList
-            . '</td></tr></table>';
+            . '</td></tr></table></div>';
 
         if ( !empty ( $this->subTitle ) )
         {

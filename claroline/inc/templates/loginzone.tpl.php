@@ -3,7 +3,7 @@
 <?php if ( count( get_included_files() ) == 1 ) die( basename(__FILE__) ); ?>
 
 <div id="loginBox">
-<h3 class="blockHeader"><?php echo get_lang('Authentication'); ?></h3>
+<h2 class="blockHeader"><?php echo get_lang('Authentication'); ?></h2>
 
 <?php if ( get_conf('claro_CasEnabled') ) : ?>
 <!-- CAS login hyperlink -->
@@ -27,18 +27,19 @@ $(document).ready( function(){
  <!-- Authentication Form -->
 <form class="claroLoginForm" action="<?php echo 'https://'.$_SERVER['HTTP_HOST'] . get_path('clarolineRepositoryWeb'); ?>auth/login.php" method="post">
 <?php else: ?>
+    <div class="form-group">
 <form class="claroLoginForm" action="<?php echo get_path('clarolineRepositoryWeb'); ?>auth/login.php" method="post">
 <?php endif; ?>
     <fieldset style="border: 0; margin: 10px 0 15px 0; padding: 5px;">
-        <label for="login"><?php echo get_lang('Username'); ?></label><br />
-        <input type="text" name="login" id="login" class="inputLogin" size="12" tabindex="1" /><br />
+        <label for="login"><?php echo get_lang('Username'); ?></label>
+        <input type="text" name="login" id="login" class="inputLogin form-control" size="12" tabindex="1" placeholder="Ingresa tu correo corporativo"/><br />
+        <label for="password"><?php echo get_lang('Password'); ?></label>
+        <input type="password" name="password" id="password" class="inputPassword form-control" size="12" tabindex="2" />
         <br />
-        <label for="password"><?php echo get_lang('Password'); ?></label><br />
-        <input type="password" name="password" id="password" class="inputPassword" size="12" tabindex="2" /><br />
-        <br />
-        <button type="submit" tabindex="3"><?php echo get_lang('Enter'); ?></button>
+        <button type="submit" tabindex="3" class="btn btn-primary" style="width: 100%"><?php echo get_lang('Enter'); ?></button>
     </fieldset>
 </form>
+    </div>
 
 <p style="padding: 5px;">
 <?php   if( get_conf('claro_displayLostPasswordLink', true) ) : ?>

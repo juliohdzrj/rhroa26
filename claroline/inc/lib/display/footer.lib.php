@@ -107,11 +107,13 @@ class ClaroFooter extends CoreTemplate
         
         $this->assign( 'platformManager', $platformManagerOutput );
         
-        $poweredByOutput = '<span class="poweredBy">'
-            . get_lang('Powered by')
-            . ' <a href="http://www.claroline.net" target="_blank">Claroline</a> '
-            . '&copy; 2001 - 2013'
-            . '</span>';
+        $poweredByOutput =
+	        '<div style="margin: 0 auto; width: 170px;margin-top: 28px"><ul style="list-style: none;">'
+            //. get_lang('Powered by')
+	        .'<li style="float: left; display: inline-block; width: 22%"><div style="margin-top: 1px;width: 25px; height: 25px"> <img src="../../../../web/css/classic/img/grupo-ro-logo.png" width="100%" alt=""></div></li>'
+            .'<li style="float: left; display: inline-block; width: 50%"><a href="http://www.gruporo.com.mx" target="_blank">www.gruporo.com.mx</a> '
+            .'&copy; 2018</li>'
+            .'</ul></div>';
         
         $this->assign( 'poweredBy', $poweredByOutput );
         

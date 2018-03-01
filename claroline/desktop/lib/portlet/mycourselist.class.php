@@ -35,6 +35,7 @@ class MyCourseList extends UserDesktopPortlet
         global $platformLanguage;
         
         $out = '';
+	    $es_administrador=$_SESSION["_user"];
         
         // Last user action
         $lastUserAction = (isset($_SESSION['last_action']) &&
@@ -55,23 +56,29 @@ class MyCourseList extends UserDesktopPortlet
         }
         elseif ( $GLOBALS['currentUser']->isCourseCreator )
         {
-            $userCommands[] = '<span class="userCommandsItemDisabled">'
-                            . '<img src="' . get_icon_url('courseadd') . '" alt="" /> '
-                            . get_lang('Create a course site')
-                            . '</span>' . "\n";
+                if($es_administrador["isPlatformAdmin"]==1){
+	                $userCommands[] = '<span class="userCommandsItemDisabled">'
+	                                  . '<img src="' . get_icon_url('courseadd') . '" alt="" /> '
+	                                  . get_lang('Create a course site')
+	                                  . '</span>' . "\n";
+                }
+
+
         }
         
         if (get_conf('allowToSelfEnroll',true))
         {
-            $userCommands[] = '<a href="'.claro_htmlspecialchars(Url::Contextualize( get_path('clarolineRepositoryWeb') . 'auth/courses.php?cmd=rqReg&amp;categoryId=0')).'" class="userCommandsItem">'
-                            . '<img src="' . get_icon_url('enroll') . '" alt="" /> '
-                            . get_lang('Enrol on a new course')
-                            . '</a>' . "\n";
-            
-            $userCommands[] = '<a href="'.claro_htmlspecialchars(Url::Contextualize( get_path('clarolineRepositoryWeb') . 'auth/courses.php?cmd=rqUnreg')).'" class="userCommandsItem">'
-                            . '<img src="' . get_icon_url('unenroll') . '" alt="" /> '
-                            . get_lang('Remove course enrolment')
-                            . '</a>' . "\n";
+	        if($es_administrador["isPlatformAdmin"]==1) {
+		        $userCommands[] = '<a href="' . claro_htmlspecialchars( Url::Contextualize( get_path( 'clarolineRepositoryWeb' ) . 'auth/courses.php?cmd=rqReg&amp;categoryId=0' ) ) . '" class="userCommandsItem">'
+		                          . '<img src="' . get_icon_url( 'enroll' ) . '" alt="" /> '
+		                          . get_lang( 'Enrol on a new course' )
+		                          . '</a>' . "\n";
+
+		        $userCommands[] = '<a href="' . claro_htmlspecialchars( Url::Contextualize( get_path( 'clarolineRepositoryWeb' ) . 'auth/courses.php?cmd=rqUnreg' ) ) . '" class="userCommandsItem">'
+		                          . '<img src="' . get_icon_url( 'unenroll' ) . '" alt="" /> '
+		                          . get_lang( 'Remove course enrolment' )
+		                          . '</a>' . "\n";
+	        }
         }
         
         $userCommands[] = '<a href="'.claro_htmlspecialchars(Url::Contextualize( get_path('clarolineRepositoryWeb') . 'course/platform_courses.php')).'" class="userCommandsItem">'

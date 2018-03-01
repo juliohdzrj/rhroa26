@@ -235,11 +235,11 @@ class DialogBox implements Display
                     break;
 
                     default:
-                        $class = 'msgMessage';
+                        $class = 'msgMessage ';
                     break;
                 }
 
-                $out[] = '<div class="claroDialogMsg ' . $class . '">' . $msg . '</div>';
+                $out[] = '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="claroDialogMsg ' . $class . '">' . $msg . '</div></div></div>';
 
                 unset ($type, $msg );
             }

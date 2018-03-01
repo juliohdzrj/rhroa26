@@ -1,5 +1,6 @@
 <!-- $Id: user_form.tpl.php 14314 2012-11-07 09:09:19Z zefredz $ -->
-
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <form id="userSettings" method="post" action="<?php echo $this->formAction; ?>" enctype="multipart/form-data">
     <?php echo $this->relayContext ?>
     <input type="hidden" id="cmd" name="cmd" value="registration" />
@@ -24,8 +25,28 @@
         <legend>
             <?php echo get_lang('Personal informations'); ?>
         </legend>
-        
+
+	    <?php //print_r($this->editableFields); echo('<br />'); print_r($this->data);?>
+
         <dl>
+
+            <dt style="display: none">
+                <label for="updatereg">
+                    Fecha
+			        <?php//echo get_lang('Last name'); ?>
+                    <!--span class="required">*</span-->
+                </label>
+            </dt>
+
+            <dd style="display: none">
+
+                <input type="text" id="updatereg" name="updatereg" value="<?php echo date("Y-m-d h:i:s"); ?>"/>
+
+            </dd>
+
+
+
+
             <dt>
                 <label for="lastname">
                     <?php echo get_lang('Last name'); ?>
@@ -33,9 +54,10 @@
                 </label>
             </dt>
             <dd>
+
                 <?php if (in_array('name', $this->editableFields)) : ?>
                 
-                    <input type="text" id="lastname" name="lastname" value="<?php echo $this->data['lastname']; ?>" />
+                    <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $this->data['lastname']; ?>" />
                 
                 <?php else : ?>
                 
@@ -53,7 +75,7 @@
             <dd>
                 <?php if (in_array('name', $this->editableFields)) : ?>
                 
-                    <input type="text" id="firstname" name="firstname" value="<?php echo $this->data['firstname']; ?>" />
+                    <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $this->data['firstname']; ?>" />
                 
                 <?php else : ?>
                     
@@ -62,6 +84,105 @@
                 
                 <?php endif; ?>
             </dd>
+
+            <dt>
+                <label for="puesto">
+			        <?php echo('Puesto'); //echo get_lang('First name'); ?>
+                    <!--span class="required">*</span-->
+                </label>
+            </dt>
+            <dd>
+		        <?php if (in_array('puesto', $this->editableFields)) : ?>
+
+                    <input type="text" class="form-control" id="puesto" name="puesto" value="<?php echo $this->data['puesto']; ?>" />
+
+		        <?php else : ?>
+
+			        <?php echo $this->data['puesto']; ?>
+                    <input type="hidden" id="puesto" name="puesto" value="<?php echo $this->data['puesto']; ?>" />
+
+		        <?php endif; ?>
+            </dd>
+
+            <dt>
+                <label for="ext">
+			        <?php echo('Ext'); //echo get_lang('First name'); ?>
+                    <!--span class="required">*</span-->
+                </label>
+            </dt>
+            <dd>
+		        <?php if (in_array('ext', $this->editableFields)) : ?>
+
+                    <input type="text" class="form-control" id="ext" name="ext" value="<?php echo $this->data['ext']; ?>" />
+
+		        <?php else : ?>
+
+			        <?php echo $this->data['ext']; ?>
+                    <input type="hidden" id="ext" name="ext" value="<?php echo $this->data['ext']; ?>" />
+
+		        <?php endif; ?>
+            </dd>
+
+            <dt>
+                <label for="ubicacion">
+			        <?php echo('Ubicación'); //echo get_lang('First name'); ?>
+                    <!--span class="required">*</span-->
+                </label>
+            </dt>
+            <dd>
+		        <?php if (in_array('ubicacion', $this->editableFields)) : ?>
+
+                    <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="<?php echo $this->data['ubicacion']; ?>" />
+
+		        <?php else : ?>
+
+			        <?php echo $this->data['ubicacion']; ?>
+                    <input type="hidden" id="ubicacion" name="ubicacion" value="<?php echo $this->data['ubicacion']; ?>" />
+
+		        <?php endif; ?>
+            </dd>
+
+            <dt>
+                <label for="aniversario">
+			        <?php echo('Aniversario'); //echo get_lang('First name'); ?>
+                    <!--span class="required">*</span-->
+                </label>
+            </dt>
+
+            <dd>
+		        <?php if (in_array('aniversario', $this->editableFields)) : ?>
+
+                    <input type="text" class="form-control" id="aniversario" name="aniversario" value="<?php echo $this->data['aniversario']; ?>" />
+
+		        <?php else : ?>
+
+			        <?php echo $this->data['aniversario']; ?>
+                    <input type="hidden" id="aniversario" name="aniversario" value="<?php echo $this->data['aniversario']; ?>" />
+
+		        <?php endif; ?>
+            </dd>
+
+            <dt>
+                <label for="cumple">
+			        <?php echo('Cumpleaños'); //echo get_lang('First name'); ?>
+                    <!--span class="required">*</span-->
+                </label>
+            </dt>
+
+            <dd>
+		        <?php if (in_array('cumple', $this->editableFields)) : ?>
+
+                    <input type="text" class="form-control" id="cumple" name="cumple" value="<?php echo $this->data['cumple']; ?>" />
+
+		        <?php else : ?>
+
+			        <?php echo $this->data['cumple']; ?>
+                    <input type="hidden" id="cumple" name="cumple" value="<?php echo $this->data['cumple']; ?>" />
+
+		        <?php endif; ?>
+            </dd>
+
+
             
             <?php if (get_conf('ask_for_official_code')) : ?>
             
@@ -80,7 +201,7 @@
                 <?php if (in_array('official_code', $this->editableFields)) : ?>
                 
                     <dd>
-                        <input type="text" id="officialCode" name="officialCode" value="<?php echo $this->data['officialCode']; ?>" />
+                        <input type="text" class="form-control" id="officialCode" name="officialCode" value="<?php echo $this->data['officialCode']; ?>" />
                     </dd>
                 
                 <?php else : ?>
@@ -143,7 +264,7 @@
                 <?php else : ?>
 
                 <dd>
-                    <input type="file" name="picture" id="picture" /><br />
+                    <input type="file" class="form-control" name="picture" id="picture" /><br />
                     <span class="notice">
                         <?php echo get_lang("max size %width%x%height%, %size% bytes", array(
                                 '%width%' => get_conf('maxUserPictureWidth', 150),
@@ -217,7 +338,7 @@
                 <dd>
                     <?php if (in_array('login', $this->editableFields)) : ?>
                     
-                        <input type="text" name="username" id="username" value="<?php echo claro_htmlspecialchars($this->data['username']); ?>" />
+                        <input type="text" class="form-control" name="username" id="username" value="<?php echo claro_htmlspecialchars($this->data['username']); ?>" />
                     
                     <?php else : ?>
                     
@@ -244,7 +365,7 @@
                         </label>
                     </dt>
                     <dd>
-                        <input type="password" autocomplete="off" name="old_password" id="old_password" />
+                        <input type="password" class="form-control" autocomplete="off" name="old_password" id="old_password" />
                     </dd>
 
                 <?php endif; ?>
@@ -270,7 +391,7 @@
                 </label>
                 </dt>
                 <dd>
-                    <input type="password" autocomplete="off" name="password" id="password" />
+                    <input type="password" class="form-control" autocomplete="off" name="password" id="password" />
                 </dd>
                 
                 <dt>
@@ -295,7 +416,7 @@
                     </label>
                 </dt>
                 <dd>
-                    <input type="password" autocomplete="off" name="password_conf" id="password_conf" />
+                    <input type="password" class="form-control" autocomplete="off" name="password_conf" id="password_conf" />
                 </dd>
 
             <?php endif; ?>
@@ -310,7 +431,7 @@
                 
                 <?php if (in_array('authSource', $this->editableFields)) : ?>
                 
-                    <select id="authSourceSelector" name="authSource">
+                    <select class="form-control" id="authSourceSelector" name="authSource">
                     
                     <?php $authSourceInOptions = false; ?>
                         
@@ -376,7 +497,7 @@
             <dd>                
                 <?php if (in_array('email', $this->editableFields)) : ?>
                 
-                    <input type="text" name="email" id="email" value="<?php echo claro_htmlspecialchars($this->data['email']); ?>" />
+                    <input type="text" class="form-control" name="email" id="email" value="<?php echo claro_htmlspecialchars($this->data['email']); ?>" />
                 
                 <?php else : ?>
                 
@@ -393,7 +514,7 @@
             <dd>                
                 <?php if (in_array('phone', $this->editableFields)) : ?>
                 
-                    <input type="text" value="<?php echo $this->data['phone']; ?>" name="phone" id="phone" />
+                    <input type="text" class="form-control" value="<?php echo $this->data['phone']; ?>" name="phone" id="phone" />
                 
                 <?php else : ?>
                 
@@ -410,7 +531,7 @@
             <dd>
                 <?php if (in_array('skype', $this->editableFields)) : ?>
                 
-                    <input type="text" value="<?php echo $this->data['skype']; ?>" name="skype" id="skype" />
+                    <input type="text" class="form-control" value="<?php echo $this->data['skype']; ?>" name="skype" id="skype" />
                 
                 <?php else : ?>
 
@@ -462,7 +583,7 @@
 <?php endif; ?>
     <dl>
         <dt>
-            <input type="submit" name="applyChange" id="applyChange" value="<?php echo get_lang('Ok'); ?>" />
+            <input type="submit" class="btn btn-primary" name="applyChange" id="applyChange" value="<?php echo get_lang('Ok'); ?>" />
             
             <?php if (claro_is_in_a_course()) : ?>
             
@@ -479,3 +600,5 @@
 <p class="notice">
     <?php echo get_lang('<span class="required">*</span> denotes required field'); ?>
 </p>
+    </div>
+</div>

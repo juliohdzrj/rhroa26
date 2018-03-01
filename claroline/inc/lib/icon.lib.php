@@ -97,9 +97,12 @@ function get_icon_url( $fileName, $moduleLabel = null )
     }
     else
     {
+
         $img = array(
-            $fileName . '.png',
-            $fileName . '.gif'
+	        $fileName . '.png',
+	        $fileName . '.gif',
+	        $fileName . '.svg'
+
         );
     }
     

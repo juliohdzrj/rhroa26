@@ -154,13 +154,14 @@ $output = '';
 $userProfileBox = new UserProfileBox(true);
 $userProfileBox->setUserId($userId);
 
-$output .= '<div id="rightSidebar">' . $userProfileBox->render() . '</div>';
+$output .= '<div class="row"><div id="rightSidebar" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' . $userProfileBox->render() . '</div></div>';
 
 /*
  * Output of : course list if required
  */
-$output .= '<div id="leftContent">' . "\n";
+$output .= '<div class="row"><div id="leftcontent" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">' . "\n";
 $output .= claro_html_tool_title(get_lang('User statistics'), null, $cmdList);
+$output .= '</div>';
 
 if( $canSwitchCourses && count($userCourseList) )
 {

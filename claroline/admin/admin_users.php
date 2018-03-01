@@ -551,7 +551,7 @@ function get_sql_filtered_user_list()
                    U.pictureUri                  AS pictureUri,
                    U.creatorId                   AS creator_id,
                    U.isCourseCreator ,
-                   U.isPlatformAdmin             AS isPlatformAdmin
+                   U.isPlatformAdmin             AS isPlatformAdmin	
            FROM  `" . $tbl_mdb_names['user'] . "` AS U
            WHERE 1=1 ";
 

@@ -1,19 +1,26 @@
 <!-- $Id: user_desktop.tpl.php 14225 2012-07-30 06:38:39Z zefredz $ -->
 
-<div id="rightSidebar">
-    <?php echo $this->userProfileBox->render(); ?>
-    
-    <?php include_textzone('textzone_right.inc.html'); ?>
-</div>
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><?php echo claro_html_tool_title(get_lang(get_lang('My desktop'))); ?></div></div>
 
-<div id="leftContent">
-    <?php echo claro_html_tool_title(get_lang(get_lang('My desktop'))); ?>
-    
-    <div id="dekstopLeftSidebar">
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="rightSidebar">
+		<?php echo $this->userProfileBox->render(); ?>
+
+		<?php include_textzone('textzone_right.inc.html'); ?>
+    </div>
+    <!--div id="leftContent"-->
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="dekstopLeftSidebar">
+	            <?php
+                /*$es_administrador=$_SESSION["_user"];
+                echo $es_administrador["isPlatformAdmin"];
+
+                if($es_administrador["isPlatformAdmin"]==1){
+	              echo $this->mycourselist;
+                }*/
+                ?>
         <?php echo $this->mycourselist; ?>
     </div>
-    
-    <div id="desktopRightContent">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="desktopRightContent">
         <?php echo $this->dialogBox->render(); ?>
         
         <div class="portlet collapsible<?php echo get_conf('userDesktopMessageCollapsedByDefault', true) ? '  collapsed' : ''; ?>">
@@ -32,4 +39,6 @@
 
         <?php echo $this->outPortlet; ?>
     </div>
+    <!--/div-->
+
 </div>

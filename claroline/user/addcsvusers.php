@@ -190,7 +190,9 @@ else
 
 $backButtonUrl = Url::Contextualize($_SESSION['CSV_CancelButton']);
 
-$content_default = get_lang('You must specify the CSV format used in your file') . ':' . "\n"
+$content_default =
+	' <p> <b>INSTRUCCIONES:</b> Seleccione la opción <b>USAR EL SIGUIENTE FORMATO</b>. Haga clic en <b>EDITAR EL FORMATO A USAR</b>. Copie y pegue el siguiente formato sin los paréntesis: <b>(lastname,firstname,username,email,officialCode,password,puesto,ext,ubicacion,aniversario,cumple)</b> después haga clic en aceptar. Adjunte el archivo CSV con la lista de usuarios a registrar. Las columnas del archivo CSV deben tener el mismo orden especificado en el formato. </p> <br /><br />'
+	. get_lang('You must specify the CSV format used in your file') . ':' . "\n"
     . '<br /><br />' . "\n"
     . '<form method="post" action="' . claro_htmlspecialchars($_SERVER['PHP_SELF']) . '" enctype="multipart/form-data"  >' . "\n"
     . '<input type="hidden" name="step" value="1" />' . "\n"
@@ -218,7 +220,7 @@ $content_default = get_lang('You must specify the CSV format used in your file')
                             . '&addType=' . $addType ))
                             , get_lang('Edit format to use')
                             ) . "\n"
-    . '<br /><br />' . "\n"
+    . '<br /><br /> ' . "\n"
     . get_lang('CSV file with the user list :') . "\n"
     . '<input type="file" name="CSVfile" />' . "\n"
     . '<br /><br />' . "\n" . "\n"
