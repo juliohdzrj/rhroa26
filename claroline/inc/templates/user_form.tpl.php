@@ -26,7 +26,7 @@
             <?php echo get_lang('Personal informations'); ?>
         </legend>
 
-	    <?php //print_r($this->editableFields); echo('<br />'); print_r($this->data);?>
+	    <?php //print_r($this->editableFields); //echo('<br />'); print_r($this->data);?>
 
         <dl>
 
@@ -100,6 +100,25 @@
 
 			        <?php echo $this->data['puesto']; ?>
                     <input type="hidden" id="puesto" name="puesto" value="<?php echo $this->data['puesto']; ?>" />
+
+		        <?php endif; ?>
+            </dd>
+
+            <dt>
+                <label for="area">
+			        <?php echo('Área'); //echo get_lang('First name'); ?>
+                    <!--span class="required">*</span-->
+                </label>
+            </dt>
+            <dd>
+		        <?php if (in_array('area', $this->editableFields)) : ?>
+
+                    <input type="text" class="form-control" id="area" name="area" value="<?php echo $this->data['area']; ?>" />
+
+		        <?php else : ?>
+
+			        <?php echo $this->data['area']; ?>
+                    <input type="hidden" id="area" name="area" value="<?php echo $this->data['area']; ?>" />
 
 		        <?php endif; ?>
             </dd>

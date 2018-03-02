@@ -35,7 +35,8 @@ $GLOBALS['ask_for_official_code'] = TRUE;
 
 
 /* profile_editable : Which parts of the profile can be changed? */
-$GLOBALS['profile_editable'] = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','ext','ubicacion','aniversario','cumple','updatereg');
+//$GLOBALS['profile_editable'] = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','ext','ubicacion','aniversario','cumple','updatereg');
+$GLOBALS['profile_editable'] = array('name','official_code','login','password','phone','language','skype','ext','ubicacion','updatereg');
 
 
 /* allow_profile_picture : Allow user to add a picture to their profile */

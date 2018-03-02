@@ -25,6 +25,18 @@
         
         <div id="userDetails">
             <p>
+                <span> Nombre de usuario<?php //echo get_lang('Email'); ?></span>
+		        <?php echo (!empty($this->userData['username']) ? claro_htmlspecialchars($this->userData['username']) : '-' ); ?>
+            </p>
+            <p>
+                <span> Puesto<?php //echo get_lang('Email'); ?></span>
+		        <?php echo (!empty($this->userData['puesto']) ? claro_htmlspecialchars($this->userData['puesto']) : '-' ); ?>
+            </p>
+            <p>
+                <span> Área<?php //echo get_lang('Email'); ?></span>
+		        <?php echo (!empty($this->userData['area']) ? claro_htmlspecialchars($this->userData['area']) : '-' ); ?>
+            </p>
+            <p>
                 <span><?php echo get_lang('Email'); ?></span>
                 <?php echo (!empty($this->userData['email']) ? claro_htmlspecialchars($this->userData['email']) : '-' ); ?>
             </p>

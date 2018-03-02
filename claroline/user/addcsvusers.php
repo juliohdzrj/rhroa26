@@ -191,7 +191,8 @@ else
 $backButtonUrl = Url::Contextualize($_SESSION['CSV_CancelButton']);
 
 $content_default =
-	' <p> <b>INSTRUCCIONES:</b> Seleccione la opción <b>USAR EL SIGUIENTE FORMATO</b>. Haga clic en <b>EDITAR EL FORMATO A USAR</b>. Copie y pegue el siguiente formato sin los paréntesis: <b>(lastname,firstname,username,email,officialCode,password,puesto,ext,ubicacion,aniversario,cumple)</b> después haga clic en aceptar. Adjunte el archivo CSV con la lista de usuarios a registrar. Las columnas del archivo CSV deben tener el mismo orden especificado en el formato. </p> <br /><br />'
+	' <p> <b>INSTRUCCIONES:</b> Seleccione la opción <b>USAR EL SIGUIENTE FORMATO</b>. Haga clic en <b>EDITAR EL FORMATO A USAR</b>. Copie y pegue el siguiente formato sin los paréntesis: <b>(lastname,firstname,username,email,officialCode,password,puesto,area,ext,ubicacion,aniversario,cumple)</b> después haga clic en aceptar. Adjunte el archivo CSV con la lista de usuarios a registrar. Las columnas del archivo CSV deben tener el mismo orden especificado en el formato. </p> <br /><br />'
+	. '<p><b>Nota:</b> El formato de fecha debe ser <b>aaaa-mm-dd</b> de lo contrario el sistema no dejara insertar o actualizar los usuarios</p>'
 	. get_lang('You must specify the CSV format used in your file') . ':' . "\n"
     . '<br /><br />' . "\n"
     . '<form method="post" action="' . claro_htmlspecialchars($_SERVER['PHP_SELF']) . '" enctype="multipart/form-data"  >' . "\n"

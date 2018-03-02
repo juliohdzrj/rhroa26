@@ -42,6 +42,7 @@ function user_initialise()
 	$userData['phone']          = isset($_REQUEST['phone'])?trim(strip_tags($_REQUEST['phone'])):'';
 	$userData['skype']          = isset($_REQUEST['skype'])?trim(strip_tags($_REQUEST['skype'])):'';
 	$userData['puesto']          = isset($_REQUEST['puesto'])?trim(strip_tags($_REQUEST['puesto'])):'';
+	$userData['area']          = isset($_REQUEST['area'])?trim(strip_tags($_REQUEST['area'])):'';
 	$userData['ext']          = isset($_REQUEST['ext'])?trim(strip_tags($_REQUEST['ext'])):'';
 	$userData['ubicacion']          = isset($_REQUEST['ubicacion'])?trim(strip_tags($_REQUEST['ubicacion'])):'';
 	$userData['aniversario']          = isset($_REQUEST['aniversario'])?trim(strip_tags($_REQUEST['aniversario'])):'';
@@ -183,6 +184,7 @@ function user_get_properties($userId)
                                    isCourseCreator,
                                    isPlatformAdmin,
                                    puesto,
+                                   area,
                                    ext,
                                    ubicacion,
                                    aniversario,
@@ -228,6 +230,7 @@ function user_create($settingList, $creatorId = null)
 	if (!isset($settingList['officialEmail']))       $settingList['officialEmail'] = false;
 	if (!isset($settingList['isPlatformAdmin']))     $settingList['isPlatformAdmin'] = false;
 	if (!isset($settingList['puesto']))     $settingList['puesto'] = '';
+	if (!isset($settingList['area']))     $settingList['area'] = '';
 	if (!isset($settingList['ext']))     $settingList['ext'] = '';
 	if (!isset($settingList['ubicacion']))     $settingList['ubicacion'] = '';
 	if (!isset($settingList['aniversario']))     $settingList['aniversario'] = '';
@@ -267,6 +270,7 @@ function user_create($settingList, $creatorId = null)
                 isCourseCreator = " . (int) $settingList['isCourseCreator'] . ",
                 isPlatformAdmin = " . (int) $settingList['isPlatformAdmin'] . ",
                 puesto = '". claro_sql_escape($settingList['puesto']) ."',
+                area = '". claro_sql_escape($settingList['area']) ."',
                 ext = " . (int) $settingList['ext'] . ",
                 ubicacion = '". claro_sql_escape($settingList['ubicacion']) ."',
                 aniversario = '". claro_sql_escape($settingList['aniversario']) ."',
@@ -318,6 +322,7 @@ function user_set_properties($userId, $propertyList)
 	                       'pictureUri'      => 'picture',
 	                       'isPlatformAdmin' => 'isPlatformAdmin',
 	                       'puesto' => 'puesto',
+	                       'area' => 'area',
 	                       'ext' => 'ext',
 	                       'ubicacion' => 'ubicacion',
 	                       'aniversario' => 'aniversario',
@@ -854,7 +859,7 @@ function user_validate_form($formMode, $data, $userId = null)
 
 	if (empty($userId) || claro_is_platform_admin())
 	{
-		$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','ext','ubicacion','aniversario','cumple','updatereg');
+		$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','area','ext','ubicacion','aniversario','cumple','updatereg');
 
 		if (claro_is_platform_admin())
 		{
@@ -1134,7 +1139,7 @@ function user_html_form($userId = null)
 	// Editable fields
 	if (empty($userId) || claro_is_platform_admin())
 	{
-		$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','ext','ubicacion','aniversario','cumple','updatereg');
+		$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','area','ext','ubicacion','aniversario','cumple','updatereg');
 
 		if (claro_is_platform_admin())
 		{

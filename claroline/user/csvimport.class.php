@@ -86,6 +86,7 @@ class CsvImport extends parseCSV
 					? $this->data[$user_id]['password'] : mk_password( 8 );
 				$userInfo['officialCode'] = isset( $this->data[$user_id]['officialCode'] ) ? $this->data[$user_id]['officialCode'] : '';
 				$userInfo['puesto'] = $this->data[$user_id]['puesto'];
+				$userInfo['area'] = $this->data[$user_id]['area'];
 				$userInfo['ext'] = $this->data[$user_id]['ext'];
 				$userInfo['ubicacion'] = $this->data[$user_id]['ubicacion'];
 				$userInfo['aniversario'] = $this->data[$user_id]['aniversario'];
@@ -210,6 +211,7 @@ class CsvImport extends parseCSV
 					? $this->data[$user_id]['password'] : mk_password( 8 );
 				$userInfo['officialCode'] = isset( $this->data[$user_id]['officialCode'] ) ? $this->data[$user_id]['officialCode'] : '';
 				$userInfo['puesto'] = $this->data[$user_id]['puesto'];
+				$userInfo['area'] = $this->data[$user_id]['area'];
 				$userInfo['ext'] = $this->data[$user_id]['ext'];
 				$userInfo['ubicacion'] = $this->data[$user_id]['ubicacion'];
 				$userInfo['aniversario'] = $this->data[$user_id]['aniversario'];
