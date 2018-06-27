@@ -10,7 +10,8 @@
                     <?php echo $this->userFullName; ?>
                 </a>
             <?php else : ?>
-                <?php echo $this->userFullName; ?>
+                <span style="color:#369">MI PERFIL</span>
+                <?php //echo $this->userFullName; ?>
             
             <?php endif; ?>
         </span>
@@ -24,88 +25,91 @@
         <?php endif; ?>
         
         <div id="userDetails">
-            <p>
-                <span> Nombre de usuario<?php //echo get_lang('Email'); ?></span>
-		        <?php echo (!empty($this->userData['username']) ? claro_htmlspecialchars($this->userData['username']) : '-' ); ?>
-            </p>
-            <p>
-                <span> Puesto<?php //echo get_lang('Email'); ?></span>
-		        <?php echo (!empty($this->userData['puesto']) ? claro_htmlspecialchars($this->userData['puesto']) : '-' ); ?>
-            </p>
-            <p>
-                <span> Área<?php //echo get_lang('Email'); ?></span>
-		        <?php echo (!empty($this->userData['area']) ? claro_htmlspecialchars($this->userData['area']) : '-' ); ?>
-            </p>
-            <p>
-                <span><?php echo get_lang('Email'); ?></span>
-                <?php echo (!empty($this->userData['email']) ? claro_htmlspecialchars($this->userData['email']) : '-' ); ?>
-            </p>
-            
-            <?php
-            if (!$this->condensedMode) :
-            ?>
-                <p>
-                    <span><?php echo get_lang('Phone'); ?></span>
-                    <?php echo (!empty($this->userData['phone']) ? claro_htmlspecialchars($this->userData['phone']) : '-' ); ?>
-                </p>
-                <p>
-                    <span>Ext.</span>
-                    <?php echo (!empty($this->userData['ext']) ? claro_htmlspecialchars($this->userData['ext']) : '-' ); ?>
-                </p>
-                <p>
-                    <span>Ubicación</span>
-		            <?php echo (!empty($this->userData['ubicacion']) ? claro_htmlspecialchars($this->userData['ubicacion']) : '-' ); ?>
-                </p>
-                <p>
-                    <span>Aniversario</span>
-		            <?php echo (!empty($this->userData['aniversario']) ? claro_htmlspecialchars($this->userData['aniversario']) : '-' ); ?>
-                </p>
-                <p>
-                    <span>Cumpleaños</span>
-		            <?php echo (!empty($this->userData['cumple']) ? claro_htmlspecialchars($this->userData['cumple']) : '-' ); ?>
-                </p>
+            <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td><span> Nombre de usuario<?php //echo get_lang('Email'); ?></span></td>
+                    <td><?php echo (!empty($this->userData['username']) ? claro_htmlspecialchars($this->userData['username']) : '-' ); ?></td>
+                </tr>
+                <tr>
+                    <td><span> Puesto<?php //echo get_lang('Email'); ?></span></td>
+                    <td><?php echo (!empty($this->userData['puesto']) ? claro_htmlspecialchars($this->userData['puesto']) : '-' ); ?></td>
+                </tr>
+                <tr>
+                    <td><span> Área<?php //echo get_lang('Email'); ?></span></td>
+                    <td><?php echo (!empty($this->userData['area']) ? claro_htmlspecialchars($this->userData['area']) : '-' ); ?></td>
+                </tr>
+                <tr>
+                    <td><span><?php echo get_lang('Email'); ?></span></td>
+                    <td><?php echo (!empty($this->userData['email']) ? claro_htmlspecialchars($this->userData['email']) : '-' ); ?></td>
+                </tr>
+                <?php
+                if (!$this->condensedMode) :
+                ?>
+                <tr>
+                    <td><span><?php echo get_lang('Phone'); ?></span></td>
+                    <td><?php echo (!empty($this->userData['phone']) ? claro_htmlspecialchars($this->userData['phone']) : '-' ); ?></td>
+                </tr>
+                <tr>
+                    <td><span>Ext.</span></td>
+                    <td><?php echo (!empty($this->userData['ext']) ? claro_htmlspecialchars($this->userData['ext']) : '-' ); ?></td>
+                </tr>
+                <tr>
+                    <td><span>Ubicación</span></td>
+                    <td><?php echo (!empty($this->userData['ubicacion']) ? claro_htmlspecialchars($this->userData['ubicacion']) : '-' ); ?></td>
+                </tr>
+                <tr>
+                    <td><span>Aniversario</span></td>
+                    <td><?php echo (!empty($this->userData['aniversario']) ? claro_htmlspecialchars($this->userData['aniversario']) : '-' ); ?></td>
+                </tr>
+                <tr>
+                    <td><span>Cumpleaños</span></td>
+                    <td><?php echo (!empty($this->userData['cumple']) ? claro_htmlspecialchars($this->userData['cumple']) : '-' ); ?></td>
+                </tr>
 
-                <!--p>
-                    <span><?php echo get_lang('Administrative code'); ?></span>
-                    <?php echo (!empty($this->userData['officialCode']) ? claro_htmlspecialchars($this->userData['officialCode']) : '-' ); ?>
-                </p-->
+                <!--tr>
+                    <td><span><?php echo get_lang('Administrative code'); ?></span></td>
+                    <td><?php echo (!empty($this->userData['officialCode']) ? claro_htmlspecialchars($this->userData['officialCode']) : '-' ); ?></td>
+                </tr-->
 
-	            <?php if( $this->userId == claro_get_current_user_id() || claro_is_platform_admin () ): ?>
+                </tbody>
+            </table>
+            </div>
+	        <?php if( $this->userId == claro_get_current_user_id() || claro_is_platform_admin () ): ?>
                 <p>
 
-		            <?php if( $this->userId == claro_get_current_user_id() ): ?>
+			        <?php if( $this->userId == claro_get_current_user_id() ): ?>
 
                         <a class="claroCmd" href="<?php  echo get_path('clarolineRepositoryWeb'); ?>auth/profile.php">
                             <img src="<?php echo get_icon_url('edit'); ?>" alt="<?php echo get_lang('Manage my account'); ?>" />
-				            <?php echo get_lang('Manage my account'); ?>
+					        <?php echo get_lang('Manage my account'); ?>
                         </a>
 
-		            <?php else: ?>
+			        <?php else: ?>
 
                         <a class="claroCmd" href="<?php  echo get_path('clarolineRepositoryWeb'); ?>admin/admin_profile.php?uidToEdit=<?php echo $this->userId; ?>">
                             <img src="<?php echo get_icon_url('edit'); ?>" alt="<?php echo get_lang('User settings'); ?>" />
-				            <?php echo get_lang('User settings'); ?>
+					        <?php echo get_lang('User settings'); ?>
                         </a>
 
-		            <?php endif; ?>
+			        <?php endif; ?>
 
                 </p>
-            <?php endif; ?>
-                
-                <?php if (get_conf('is_trackingEnabled')) : ?>
+
+	        <?php endif; ?>
+	        <?php if (get_conf('is_trackingEnabled')&&claro_is_platform_admin ()): ?>
                 <p>
                     <a class="claroCmd" href="<?php echo Url::Contextualize(get_path('clarolineRepositoryWeb')
-                    .'tracking/userReport.php?userId='.claro_get_current_user_id()); ?>">
+		                                                                    .'tracking/userReport.php?userId='.claro_get_current_user_id()); ?>">
                     <img src="<?php echo get_icon_url('statistics'); ?>" alt="<?php echo get_lang('Statistics'); ?>" />
                     <?php echo get_lang('View my statistics'); ?>
                     </a>
                 </p>
-                
-                <?php endif; ?>
-            
-            <?php endif; ?>
-            
 
+	        <?php endif; ?>
+
+	        <?php endif;?>
             
         </div>
     </div>

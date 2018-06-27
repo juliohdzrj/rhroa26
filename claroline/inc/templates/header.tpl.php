@@ -49,16 +49,4 @@ endif;
 <?php echo $this->htmlScriptDefinedHeaders . "\n";?>
     <script src="../../../web/js/bootstrap.min.js"></script>
 
-    <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-        var _smartsupp = _smartsupp || {};
-        _smartsupp.key = '4cc557224537d8ee85cd600753f736f3cc9e75a8';
-        window.smartsupp||(function(d) {
-            var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-            s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-            c.type='text/javascript';c.charset='utf-8';c.async=true;
-            c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-        })(document);
-    </script>
-
 </head>

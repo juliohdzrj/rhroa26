@@ -2,6 +2,9 @@
  $Id: main.css 14157 2012-05-22 06:41:04Z zefredz $
  **/
 
+freme{
+    overflow: hidden !important;
+}
 
 /******************************************************************************
                         MAIN HTML MARKUP
@@ -510,18 +513,29 @@ li.lastBreadCrumbsNode {
 }
 
 #courseLeftSidebar {
-    position: relative;
+    /*position: relative;
     width: 220px;
     margin: 0;
     padding: 0;
     border-right: 1px solid #DDDDDD;
-    float: left;
+    float: left;*/
+    border-right: 1px solid #DDDDDD;
+}
+
+#courseLeftSidebar ul{
+    list-style: none;
+}
+
+#courseLeftSidebar ul li{
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #courseRightContent {
-    margin-left: 220px;
+    /*margin-left: 220px;
     padding-left: 10px;
-    border-left: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;*/
 
 }
 
@@ -777,7 +791,7 @@ ul.coursesTabs li:hover {
 
 div.tabbedCourse {
     padding: 0;
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
     border-color: #ddd;
 }
@@ -1011,7 +1025,7 @@ ul.commandList li a:hover {
 }
 
 ul.commandList li a.help {
-    width: 16px;
+    width: 27px;
     border-color: #CCDDEE;
     background-color: #CCDDEE;
     background-image: url(img/help.png);

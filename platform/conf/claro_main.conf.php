@@ -189,7 +189,7 @@ $GLOBALS['administrator_name'] = 'Aula Grupo RO';
 
 
 /* administrator_email : E-mail */
-$GLOBALS['administrator_email'] = 'julio.hdzrj@gmail.com';
+$GLOBALS['administrator_email'] = 'elearning@gruporo.com.mx';
 
 
 /* administrator_phone : Phone */

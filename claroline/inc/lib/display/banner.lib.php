@@ -107,11 +107,11 @@ class ClaroBanner extends CoreTemplate
                 . get_lang('My desktop').'</a>'
                 ;
             
-            $userToolUrlListLeft[]  = '<a href="'
+            /*$userToolUrlListLeft[]  = '<a href="'
                 . get_path('clarolineRepositoryWeb')
                 . 'messaging" target="_top">'
                 . get_lang('My messages').'</a>'
-                ;
+                ;*/
             
             if(claro_is_platform_admin())
             {

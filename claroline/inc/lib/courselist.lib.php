@@ -547,6 +547,7 @@ function render_user_course_list_desactivated ()
  */
 function render_user_course_list ()
 {
+	$es_administrador=$_SESSION["_user"];
     // Get the list of personnal courses marked as contening new events
     $date = Claroline::getInstance ()->notification->get_notification_date ( claro_get_current_user_id () );
     $modified_course = Claroline::getInstance ()->notification->get_notified_courses ( $date, claro_get_current_user_id () );
@@ -625,7 +626,7 @@ function render_user_course_list ()
     $out = '';
 
     // Courses organized by categories
-    if ( get_conf ( 'userCourseListGroupByCategories' ) )
+    if ( get_conf ( 'userCourseListGroupByCategories' ) && $es_administrador["isPlatformAdmin"]==1)
     {
         // Get all the categories names (used to build trails)
         $categoryList = ClaroCategory::getAllCategories ( 0, 0, 1 );
@@ -738,7 +739,7 @@ function render_user_course_list ()
     // Simple course list
     else
     {
-        if ( count ( $reorganizedUserCourseList ) > 0 )
+        if ( count ( $reorganizedUserCourseList ) > 0 && $es_administrador["isPlatformAdmin"]==1)
         {
             $out .= '<dl class="courseList">';
 

@@ -402,13 +402,13 @@ switch ($module['contentType'])
    {
 
       include("scormAPI.inc.php");
-      echo '<frameset border="0" cols="0,20%,80%" frameborder="no">
+      echo '<frameset border="0" rows="0,25%,*" frameborder="no">
             <frame src="'. claro_htmlspecialchars(Url::Contextualize('updateProgress.php')).'" name="upFrame">';
 
    }
    else
    {
-      echo '<frameset border="0" cols="20%,80%" frameborder="yes">';
+      echo '<frameset border="0" rows="34%,*" frameborder="yes">';
    }
 ?>
     <frame src="<?php echo claro_htmlspecialchars(Url::Contextualize('tableOfContent.php'));?>" name="tocFrame" />

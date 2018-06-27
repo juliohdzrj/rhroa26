@@ -80,22 +80,35 @@ class MyCourseList extends UserDesktopPortlet
 		                          . '</a>' . "\n";
 	        }
         }
-        
-        $userCommands[] = '<a href="'.claro_htmlspecialchars(Url::Contextualize( get_path('clarolineRepositoryWeb') . 'course/platform_courses.php')).'" class="userCommandsItem">'
-                        . '<img src="' . get_icon_url('course') . '" alt="" /> '
-                        . get_lang('All platform courses')
-                        . '</a>' . "\n";
-        
-        $userCommands[] = '<a href="'.claro_htmlspecialchars(Url::Contextualize( get_path('clarolineRepositoryWeb') . 'notification_date.php')).'" class="userCommandsItem">'
-                        . '<img class="iconDefinitionList" src="'.get_icon_url('hot').'" alt="'.get_lang('New items').'" />'
-                        . ' '.get_lang('New items').' '
-                        . get_lang('to another date')
-                        . ((substr($lastUserAction, strlen($lastUserAction) - 8) == '00:00:00' ) ?
-                            (' ['.claro_html_localised_date(
-                                get_locale('dateFormatNumeric'),
-                                strtotime($lastUserAction)).']') :
-                            (''))
-                        . '</a>' . "\n";
+
+	    if($es_administrador["isPlatformAdmin"]==1) {
+		    $userCommands[] = '<a href="' . claro_htmlspecialchars( Url::Contextualize( get_path( 'clarolineRepositoryWeb' ) . 'course/platform_courses.php' ) ) . '" class="userCommandsItem">'
+		                      . '<img src="' . get_icon_url( 'course' ) . '" alt="" /> '
+		                      . get_lang( 'All platform courses' )
+		                      . '</a>' . "\n";
+
+		    $userCommands[] = '<a href="' . claro_htmlspecialchars( Url::Contextualize( get_path( 'clarolineRepositoryWeb' ) . 'notification_date.php' ) ) . '" class="userCommandsItem">'
+		                      . '<img class="iconDefinitionList" src="' . get_icon_url( 'hot' ) . '" alt="' . get_lang( 'New items' ) . '" />'
+		                      . ' ' . get_lang( 'New items' ) . ' '
+		                      . get_lang( 'to another date' )
+		                      . ( ( substr( $lastUserAction, strlen( $lastUserAction ) - 8 ) == '00:00:00' ) ?
+				    ( ' [' . claro_html_localised_date(
+						    get_locale( 'dateFormatNumeric' ),
+						    strtotime( $lastUserAction ) ) . ']' ) :
+				    ( '' ) )
+		                      . '</a>' . "\n";
+
+
+
+	    }
+	    if($es_administrador["isPlatformAdmin"]==1) {
+		    $tituloAdminCursos=get_lang('Manage my courses');
+		    $miListaCursos=get_lang('My course list');
+	    }else{
+		    $tituloAdminCursos="";
+		    $miListaCursos="";
+	    }
+
         
         $userCourseList = render_user_course_list();
         
@@ -106,13 +119,13 @@ class MyCourseList extends UserDesktopPortlet
               . '<tr>'
               . '<td class="userCommands">'*/
               '<div class="userCommands">'
-              . '<h2>'.get_lang('Manage my courses').'</h2>'
+              . '<h2>'.$tituloAdminCursos.'</h2>'
               . claro_html_list($userCommands)
               . '</div>'
               /*. '</td>'
               . '<td class="userCourseList">'*/
               . '<div class="userCourseList">'
-              . '<h2>'.get_lang('My course list').'</h2>'
+              . '<h2>'.$miListaCursos.'</h2>'
               . $userCourseList;
               
         if (!empty($userCourseListDesactivated))
@@ -136,15 +149,15 @@ class MyCourseList extends UserDesktopPortlet
     {
         $output = get_lang('My course list');
         
-        return $output;
+        return "<h1>".$output."</h1>";
     }
     
     public function render()
     {
         return '<div class="portlet'.(!empty($this->label)?' '.$this->label:'').'">' . "\n"
-             . '<h1>' . "\n"
-             . $this->renderTitle() . "\n"
-             . '</h1>' . "\n"
+             //. '<h1>' . "\n"
+             //. $this->renderTitle() . "\n"
+             //. '</h1>' . "\n"
              . '<div class="content">' . "\n"
              . $this->renderContent()
              . '</div>' . "\n"

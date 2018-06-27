@@ -109,6 +109,8 @@ if ( isset($_REQUEST['searchPassword']) && !empty($emailTo) )
 
             // mail subject
             $emailSubject = get_lang('Login request') . ' ' . get_conf('siteName');
+	        //$emailSubject = 'Solicitud de acceso' . ' ' . get_conf('siteName');
+
             
             $blockLoginInfo = '';
             

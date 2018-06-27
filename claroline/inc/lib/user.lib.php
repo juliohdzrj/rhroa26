@@ -46,6 +46,7 @@ function user_initialise()
 	$userData['ext']          = isset($_REQUEST['ext'])?trim(strip_tags($_REQUEST['ext'])):'';
 	$userData['ubicacion']          = isset($_REQUEST['ubicacion'])?trim(strip_tags($_REQUEST['ubicacion'])):'';
 	$userData['aniversario']          = isset($_REQUEST['aniversario'])?trim(strip_tags($_REQUEST['aniversario'])):'';
+	$userData['cumple']          = isset($_REQUEST['cumple'])?trim(strip_tags($_REQUEST['cumple'])):'';
 	$userData['updatereg']          = isset($_REQUEST['updatereg'])?trim(strip_tags($_REQUEST['updatereg'])):'';
 	$userData['authSource']     = isset($_REQUEST['authSource'])?trim(strip_tags($_REQUEST['authSource'])):'';
 	$userData['isStudent']      = (bool) (isset($_REQUEST['platformRole']) && $_REQUEST['platformRole'] == 'student');
@@ -859,7 +860,8 @@ function user_validate_form($formMode, $data, $userId = null)
 
 	if (empty($userId) || claro_is_platform_admin())
 	{
-		$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','area','ext','ubicacion','aniversario','cumple','updatereg');
+		//$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','area','ext','ubicacion','aniversario','cumple','updatereg');
+		$editableFields = array('name','login','password','email','phone','language','picture','skype','puesto','area','ext','ubicacion','aniversario','cumple','updatereg');
 
 		if (claro_is_platform_admin())
 		{
@@ -1139,6 +1141,7 @@ function user_html_form($userId = null)
 	// Editable fields
 	if (empty($userId) || claro_is_platform_admin())
 	{
+		//$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','area','ext','ubicacion','aniversario','cumple','updatereg');
 		$editableFields = array('name','official_code','login','password','email','phone','language','picture','skype','puesto','area','ext','ubicacion','aniversario','cumple','updatereg');
 
 		if (claro_is_platform_admin())

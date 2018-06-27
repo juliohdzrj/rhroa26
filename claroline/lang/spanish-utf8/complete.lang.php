@@ -1,5 +1,4 @@
 <?php
-
 $_lang['!!!! size of course repository (include claroline and garbage in old systems)'] = '!!!! size of course repository (include claroline and garbage in old systems)';
 $_lang['%1\$s by %2\$s'] = '%1$s por %2$s';
 $_lang['%1\$s modified on %2\$s by %3\$s'] = '%1$s modificado el %2$s por %3$s';
@@ -1292,7 +1291,7 @@ $_lang['Login'] = 'Nombre de usuario';
 $_lang['Login as'] = 'Conectar';
 $_lang['Login date'] = 'Fecha de conexión';
 $_lang['Login failed.'] = 'Inicio de sesión fallido.';
-$_lang['Login request'] = 'Petición del nombre de usuario';
+$_lang['Login request'] = 'Solicitud de nombre de usuario';
 $_lang['Logins'] = 'Nombres de usuario';
 $_lang['Logins not used'] = 'Nombres de usuario no usados';
 $_lang['Logout'] = 'Salir';
@@ -1683,7 +1682,7 @@ $_lang['Organisation website'] = 'Sitio web de la organización';
 $_lang['Orphan questions'] = 'Preguntas sueltas';
 $_lang['Orphan session courses (without source course)'] = 'Sesiones de curso desvinculadas (sin curso maestro)';
 $_lang['Other'] = 'Otro';
-$_lang['Other informations'] = 'Otras informaciones';
+$_lang['Other informations'] = 'Contacto';
 $_lang['Other submission options'] = 'Otras opciones para envíos';
 $_lang['Others'] = 'Otros';
 $_lang['Others (*)'] = 'Otros (*)';
@@ -3225,13 +3224,13 @@ $_lang['blockLoginInfo'] = '
         Password : %password
 ';
 $_lang['blockLoginRequest'] = '
-Login request %siteName
+Solicitud de acceso %siteName
 %rootWeb
-This  is  your account Login-Pass
+Inicio de sesión de su cuenta
 
 %loginInfo
 
-This new password has been automatically generated. Once logged in, feel free to change it.
+Esta nueva contraseña se ha generado automáticamente. Una vez que haya iniciado sesión, puede cambiarla.
 ';
 $_lang['blockModulePoolHelp'] = 'Esta página le permite ver todos los módulos disponibles en este curso. <br />
                   Cualquier ejercicio o documento que haya sido añadido a la secuencia de aprendizaje

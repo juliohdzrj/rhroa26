@@ -56,7 +56,8 @@ header('Content-Type: text/html; charset=' . get_locale('charset'));
 <html>
 
     <head>
-        <title><?php echo $titlePage; ?></title>
+        <title><?php echo 'modulo'.$titlePage; ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
 <?php
 if ( !isset($_GET['frames']) )
@@ -73,10 +74,10 @@ else
 if( $displayFrames )
 {
 ?>
-    <frameset border="0" rows="150,*,70" frameborder="no">
-        <frame src="<?php echo claro_htmlspecialchars(Url::Contextualize('topModule.php'));?>" name="headerFrame" />
+    <frameset border="0" rows="*" frameborder="no">
+        <!--frame src="<?php echo claro_htmlspecialchars(Url::Contextualize('topModule.php'));?>" name="headerFrame" /-->
         <frame src="<?php echo claro_htmlspecialchars(Url::Contextualize('startModule.php'));?>" name="mainFrame" />
-        <frame src="<?php echo claro_htmlspecialchars(Url::Contextualize('bottomModule.php'));?>" name="bottomFrame" />
+        <!--frame src="<?php echo claro_htmlspecialchars(Url::Contextualize('bottomModule.php'));?>" name="bottomFrame" /-->
     </frameset>
 <?php
 }

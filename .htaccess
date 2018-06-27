@@ -1,0 +1,14 @@
+#Options -Multiviews
+#Options +FollowSymLinks
+#RewriteEngine On
+#RewriteBase /
+#RewriteCond %{HTTPS} on
+#RewriteCond %{HTTP_HOST} ^www\.(.*)
+#RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+
+
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.(.*)
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+

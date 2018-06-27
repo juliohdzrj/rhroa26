@@ -245,11 +245,15 @@ switch ( $display )
         if( get_conf('is_trackingEnabled') )
         {
             // Display user tracking link
-            $cmdList[] = array(
-                'img' => 'statistics',
-                'name' => get_lang('View my statistics'),
-                'url' => claro_htmlspecialchars(Url::Contextualize(get_conf('urlAppend') . '/claroline/tracking/userReport.php?userId='.claro_get_current_user_id()))
-            );
+	        if (claro_is_platform_admin())
+	        {
+		        $cmdList[] = array(
+			        'img' => 'statistics',
+			        'name' => get_lang('View my statistics'),
+			        'url' => claro_htmlspecialchars(Url::Contextualize(get_conf('urlAppend') . '/claroline/tracking/userReport.php?userId='.claro_get_current_user_id()))
+		        );
+	        }
+
         }
         
         // Display request course creator status

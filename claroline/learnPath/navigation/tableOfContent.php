@@ -174,15 +174,15 @@ $sql = "SELECT `name`
 
 $lpName = claro_sql_query_get_single_value($sql);
 
-$out .= '<p><b>'.wordwrap($lpName,$moduleNameLength,' ',1).'</b></p>'."\n"
-    . '<p>'."\n"
-    . '<small>'
+$out .= '<b>'.wordwrap($lpName,$moduleNameLength,' ',1).'</b>'."\n"
+    . ''."\n"
+    . ''
     . get_lang('View').' : '
     . '<a href="'.claro_htmlspecialchars(Url::Contextualize('viewer.php?frames=0')).'" target="_top">'.get_lang('Fullscreen').'</a>'
     . ' | '
     . '<a href="'.claro_htmlspecialchars(Url::Contextualize('viewer.php?frames=1')).'" target="_top">'.get_lang('In frames').'</a>'
-    . '</small>'."\n"
-    . '</p>'."\n\n"
+    . ''."\n"
+    . ''."\n\n"
     . '<table width="100%">'."\n\n"
     ;
 
@@ -419,7 +419,7 @@ if ( $moduleNb > 1 )
         $prevNextString .=  get_lang('Next');
     }
     
-    $prevNextString .=  '</small><br /><br />'."\n";
+    $prevNextString .=  '</small>'."\n";
 
     $out .= $prevNextString;
 }

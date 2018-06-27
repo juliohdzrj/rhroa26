@@ -1,4 +1,4 @@
-<!-- // $Id: list.tpl.php 612 2012-02-21 13:45:43Z jmeuriss $ -->
+<!-- // $Id: list.tpl.php 612 2012-02-21 13:45:43Z jmeuriss $ no se ve-->
 <table class="claroTable emphaseLine" border="0" align="center" cellpadding="2" cellspacing="2" width="100%">
     <thead>
         <tr class="headerX">
@@ -30,6 +30,7 @@
                     <img src="<?php echo get_icon_url( 'quiz' ) ; ?>" alt="" />
                     <?php echo $thisExercise['title']; ?>
                 </a>
+                no se ve
             </td>
             <?php if ( $this->is_allowedToEdit ) : ?>
                 <td align="center">

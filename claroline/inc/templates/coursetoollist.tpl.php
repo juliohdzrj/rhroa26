@@ -14,7 +14,7 @@
     <ul>
         <?php foreach ($this->otherToolsList as $otherTool) : ?>
         
-        <li><?php echo $otherTool; ?></li>
+        <li><?php //echo $otherTool; ?></li>
         
         <?php endforeach; ?>
     </ul>

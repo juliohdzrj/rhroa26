@@ -71,7 +71,7 @@ if (get_conf('display_former_homepage', false) || !claro_is_user_authenticated()
         
         // User commands
         $userCommands = array();
-        
+
         $userCommands[] = '<a href="' . $_SERVER['PHP_SELF'] . '" class="userCommandsItem">'
                         . '<img src="' . get_icon_url('mycourses') . '" alt="" /> '
                         . get_lang('My course list')
