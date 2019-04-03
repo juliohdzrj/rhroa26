@@ -1,13 +1,12 @@
 {
-  "name": "grid-layout",
+  "name": "aula-chat",
   "authors": [
     "Julio Ramos <julio.hdzrj@gmail.com>"
   ],
-  "description": "gridapp",
-  "main": "gridapp",
+  "description": "chat",
+  "main": "index.html",
   "license": "MIT",
-  "homepage": "",
-  "private": true,
+  "homepage": "https://github.com/juliohdzrj/rhroa26",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -37,6 +36,9 @@
     "paper-listbox": "PolymerElements/paper-listbox#^2.1.1",
     "polymer": "Polymer/polymer#^2.6.0",
     "promise-polyfill": "PolymerLabs/promise-polyfill#^2.0.1",
-    "web-animations-js": "^2.3.1"
+    "web-animations-js": "^2.3.1",
+    "paper-menu": "googlearchive/paper-menu#^1.3.0",
+    "iron-location": "PolymerElements/iron-location#^2.2.2",
+    "paper-badge": "PolymerElements/paper-badge#^2.1.0"
   }
 }

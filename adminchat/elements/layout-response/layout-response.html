@@ -1,0 +1,681 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+<link rel="import" href="../../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<!--link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html"-->
+
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-shared-styles.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+
+
+
+
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/app-layout/demo/sample-content.html">
+
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+
+<link rel="import" href="../../bower_components/paper-autocomplete/paper-autocomplete.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+
+<link rel="import" href="../../bower_components/iron-location/iron-location.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+
+
+
+
+
+
+
+
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+
+
+
+
+
+
+
+
+<dom-module id="layout-response">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+            <style is="custom-style">
+                .flex-center-justified {
+                    @apply --layout-horizontal;
+                    @apply --layout-center-justified;
+                }
+
+                #notes {
+                    @apply --layout-vertical;
+                    @apply --layout-wrap;
+                    margin-bottom: 6%;
+                    word-break: break-all;
+                }
+                #notes > paper-card {
+                    font-family: "MontserratRegular";
+                    box-sizing: border-box;
+                    /*max-width: 184px;*/
+                    margin: 3px;
+                    flex: 0 0 auto;
+                }
+
+                paper-card {
+                    color: azure;
+                    background-color: rgb(125, 120, 143);
+                    --paper-card-header-color: azure;
+                    --paper-card-header-text:{
+                        font-size: 1em;
+                    }
+                }
+                div.card-actions a{
+                    color:rgb(240, 255, 255);
+                }
+                div.card-actions paper-icon-button:hover{
+                    color: rgb(255, 247, 0);
+                    transition: color 2s;
+                }
+                .cyan{
+                    --paper-card-header-text:1em;
+                }
+                div.colcontent1{
+                    width: 50%; padding: 2%;
+                }
+                a:link
+                {
+                    text-decoration:none;
+                }
+                .iconChat{
+                    color: rgba(255, 247, 0, 0.58);
+                }
+
+                paper-input {
+                    max-width: 400px;
+                    margin: auto;
+                }
+                iron-icon, div[suffix] {
+                    color: hsl(0, 0%, 50%);
+                    margin-right: 12px;
+                }
+                paper-button.indigo {
+                    background-color: rgb(66, 60, 87);
+                    color: white;
+                    --paper-button-raised-keyboard-focus: {
+                        background-color: var(--paper-pink-a200) !important;
+                        color: white !important;
+                    };
+                }
+
+                @media (max-width: 768px) {
+                    /* For mobile phones: */
+                    div.colcontent1{
+                        width: 100%; padding: 2%;
+                    }
+                }
+            </style>
+            <style is="cuatom-style">
+                /**
+ $Id: chataro 180627 2018-06-27
+ **/
+                #center-text {
+                    display: flex;
+                    flex: 1;
+                    flex-direction:column;
+                    justify-content: center;
+                    align-items: center;
+                    height:100%;
+
+                }
+                #chat-circle {
+                    z-index: 10000;
+                    position: fixed;
+                    bottom: 16px;
+                    right: 16px;
+                    /*background: #5A5EB9;*/
+                    background: rgb(46, 66, 91);
+                    width: 58px;
+                    height: 58px;
+                    border-radius: 50%;
+                    color: white;
+                    /*padding: 28px;*/
+                    cursor: pointer;
+                    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+                }
+                #chat-circle i{
+                    margin-top: 10px;
+                    margin-left: 0px;
+                }
+
+                .btn#my-btn {
+                    background: white;
+                    padding-top: 13px;
+                    padding-bottom: 12px;
+                    border-radius: 45px;
+                    padding-right: 40px;
+                    padding-left: 40px;
+                    color: #5865C3;
+                }
+                #chat-overlay {
+                    background: rgba(255,255,255,0.1);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    display: none;
+                }
+
+
+                .chat-box {
+                    background: #efefef;
+                    border-radius:5px;
+                    box-shadow: 0px 0px 3px 2px rgba(204, 204, 204, 0.59);
+                }
+                .chat-box-toggle {
+                    /* margin-right: 15px; */
+                    cursor: pointer;
+                    margin-top: 0px;
+                    font-size: 0.75em;
+                    text-align: right;
+                    padding-top: 36px;
+                }
+                .header_title{
+                    float: left;
+                }
+                .chat-box-header {
+                    /*background: #5A5EB9;*/
+                    background: rgb(46, 66, 91);
+                    /*height:47px;*/
+                    border-top-left-radius:5px;
+                    border-top-right-radius:5px;
+                    color:white;
+                    text-align:left;
+                    font-size:1em;
+                    /*padding-top:12px;
+                    padding-left: 15px;*/
+                    padding: 3%;
+                }
+                .chat-box-body {
+                    position: relative;
+                    height:370px;
+                    height:auto;
+                    border:1px solid #ccc;
+                    overflow: hidden;
+                }
+                .chat-box-body:after {
+                    content: "";
+                    /*background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAgOCkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGNpcmNsZSBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgY3g9IjE3NiIgY3k9IjEyIiByPSI0Ii8+PHBhdGggZD0iTTIwLjUuNWwyMyAxMW0tMjkgODRsLTMuNzkgMTAuMzc3TTI3LjAzNyAxMzEuNGw1Ljg5OCAyLjIwMy0zLjQ2IDUuOTQ3IDYuMDcyIDIuMzkyLTMuOTMzIDUuNzU4bTEyOC43MzMgMzUuMzdsLjY5My05LjMxNiAxMC4yOTIuMDUyLjQxNi05LjIyMiA5LjI3NC4zMzJNLjUgNDguNXM2LjEzMSA2LjQxMyA2Ljg0NyAxNC44MDVjLjcxNSA4LjM5My0yLjUyIDE0LjgwNi0yLjUyIDE0LjgwNk0xMjQuNTU1IDkwcy03LjQ0NCAwLTEzLjY3IDYuMTkyYy02LjIyNyA2LjE5Mi00LjgzOCAxMi4wMTItNC44MzggMTIuMDEybTIuMjQgNjguNjI2cy00LjAyNi05LjAyNS0xOC4xNDUtOS4wMjUtMTguMTQ1IDUuNy0xOC4xNDUgNS43IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTg1LjcxNiAzNi4xNDZsNS4yNDMtOS41MjFoMTEuMDkzbDUuNDE2IDkuNTIxLTUuNDEgOS4xODVIOTAuOTUzbC01LjIzNy05LjE4NXptNjMuOTA5IDE1LjQ3OWgxMC43NXYxMC43NWgtMTAuNzV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjcxLjUiIGN5PSI3LjUiIHI9IjEuNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjE3MC41IiBjeT0iOTUuNSIgcj0iMS41Ii8+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iODEuNSIgY3k9IjEzNC41IiByPSIxLjUiLz48Y2lyY2xlIGZpbGw9IiMwMDAiIGN4PSIxMy41IiBjeT0iMjMuNSIgcj0iMS41Ii8+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTkzIDcxaDN2M2gtM3ptMzMgODRoM3YzaC0zem0tODUgMThoM3YzaC0zeiIvPjxwYXRoIGQ9Ik0zOS4zODQgNTEuMTIybDUuNzU4LTQuNDU0IDYuNDUzIDQuMjA1LTIuMjk0IDcuMzYzaC03Ljc5bC0yLjEyNy03LjExNHpNMTMwLjE5NSA0LjAzbDEzLjgzIDUuMDYyLTEwLjA5IDcuMDQ4LTMuNzQtMTIuMTF6bS04MyA5NWwxNC44MyA1LjQyOS0xMC44MiA3LjU1Ny00LjAxLTEyLjk4N3pNNS4yMTMgMTYxLjQ5NWwxMS4zMjggMjAuODk3TDIuMjY1IDE4MGwyLjk0OC0xOC41MDV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxwYXRoIGQ9Ik0xNDkuMDUgMTI3LjQ2OHMtLjUxIDIuMTgzLjk5NSAzLjM2NmMxLjU2IDEuMjI2IDguNjQyLTEuODk1IDMuOTY3LTcuNzg1LTIuMzY3LTIuNDc3LTYuNS0zLjIyNi05LjMzIDAtNS4yMDggNS45MzYgMCAxNy41MSAxMS42MSAxMy43MyAxMi40NTgtNi4yNTcgNS42MzMtMjEuNjU2LTUuMDczLTIyLjY1NC02LjYwMi0uNjA2LTE0LjA0MyAxLjc1Ni0xNi4xNTcgMTAuMjY4LTEuNzE4IDYuOTIgMS41ODQgMTcuMzg3IDEyLjQ1IDIwLjQ3NiAxMC44NjYgMy4wOSAxOS4zMzEtNC4zMSAxOS4zMzEtNC4zMSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEuMjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=');*/
+                    opacity: 0.1;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    height:100%;
+                    position: absolute;
+                    z-index: -1;
+                }
+                #chat-input {
+                    background: #f4f7f9;
+                    width:100%;
+                    position:relative;
+                    height:47px;
+                    padding-top:10px;
+                    padding-right:50px;
+                    padding-bottom:10px;
+                    padding-left:15px;
+                    border:none;
+                    resize:none;
+                    outline:none;
+                    border:1px solid #ccc;
+                    color:#888;
+                    border-top:none;
+                    border-bottom-right-radius:5px;
+                    border-bottom-left-radius:5px;
+                    overflow:hidden;
+                }
+                .chat-input{
+                    padding: 3%;
+                    padding-bottom: 6%;
+                }
+                .chat-input > form {
+                    margin-bottom: 0;
+                }
+                #chat-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                    color: #ccc;
+                }
+                #chat-input::-moz-placeholder { /* Firefox 19+ */
+                    color: #ccc;
+                }
+                #chat-input:-ms-input-placeholder { /* IE 10+ */
+                    color: #ccc;
+                }
+                #chat-input:-moz-placeholder { /* Firefox 18- */
+                    color: #ccc;
+                }
+                .chat-submit {
+                    position:absolute;
+                    bottom:3px;
+                    right:10px;
+                    background: transparent;
+                    box-shadow:none;
+                    border:none;
+                    border-radius:50%;
+                    color:rgb(46, 66, 91);
+                    width:35px;
+                    height:35px;
+                }
+                .chat-submit:hover{
+                    background-color: transparent;
+                }
+                .chat-logs {
+                    padding:15px;
+                    height:339px;
+                    overflow-y:scroll;
+                }
+
+                .chat-logs::-webkit-scrollbar-track
+                {
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                    /*background-color: #F5F5F5;*/
+                    background-color: #f7f9fb;
+                }
+
+                .chat-logs::-webkit-scrollbar
+                {
+                    width: 5px;
+                    background-color: #F5F5F5;
+                }
+
+                .chat-logs::-webkit-scrollbar-thumb
+                {
+                    background-color: #5A5EB9;
+                }
+
+                /* Círculos de colores numerados */
+                div.msg-avatar span{
+                    border-radius: 0.8em;
+                    -moz-border-radius: 0.8em;
+                    -webkit-border-radius: 0.8em;
+                    color: #ffffff;
+                    display: inline-block;
+                    font-weight: bold;
+                    line-height: 1.6em;
+                    margin-right: 15px;
+                    text-align: center;
+                    width: 1.6em;
+                }
+                div.msg-avatar{
+                    font-size: 1.6em;
+                }
+                div.selff{
+                    float: right;
+                }
+                div.userf{
+                    float: left;
+                }
+                div.selff span{
+                    background: #7a7a7a;
+                }
+                div.userf span{
+                    background: #4682B4;
+                }
+
+
+
+                div.selfm{
+                    margin-right:10px;
+                }
+                div.userm{
+                    margin-left: -4px;
+                }
+
+
+                @media only screen and (max-width: 500px) {
+                    .chat-logs {
+                        height:40vh;
+                    }
+                }
+
+                .chat-msg.user > .msg-avatar img {
+                    width:45px;
+                    height:45px;
+                    border-radius:50%;
+                    float:left;
+                    width:15%;
+                }
+                .chat-msg.self > .msg-avatar img {
+                    width:45px;
+                    height:45px;
+                    border-radius:50%;
+                    float:right;
+                    width:15%;
+                }
+                .cm-msg-text {
+                    background:white;
+                    padding:10px 15px 10px 15px;
+                    color:#666;
+                    max-width:75%;
+                    float:left;
+                    /*margin-left:10px;*/
+                    position:relative;
+                    margin-bottom:20px;
+                    border-radius:30px;
+                    word-break: break-word;
+                }
+                .chat-msg {
+                    clear:both;
+                }
+                .chat-msg.self > .cm-msg-text {
+                    float:right;
+                    /*margin-right:10px;*/
+                    background: #5A5EB9;
+                    color:white;
+                }
+                .cm-msg-button>ul>li {
+                    list-style:none;
+                    float:left;
+                    width:50%;
+                }
+                .cm-msg-button {
+                    clear: both;
+                    margin-bottom: 70px;
+                }
+                #errorInput{
+                    color: red;
+                }
+            </style>
+        </custom-style>
+        [[_routeTypeChat(datacurrentroute.subpage,dataparams.id)]]
+
+        <iron-ajax
+                id="requestDataChat"
+                method="POST"
+                body="{{user}}"
+                url="../adminchat/view/datachatcurrent.php"
+                content-type="application/json"
+                headers="{{headers}}"
+                on-response="handleResponse"
+                last-response="{{ajaxResponseList}}">
+        </iron-ajax>
+
+        <iron-ajax
+                id="requestSuportMsg"
+                method="POST"
+                body="{{suport}}"
+                url="../adminchat/view/suportmsg.php"
+                content-type="application/json"
+                headers="{{headers}}"
+                on-response="handleResponseMsg">
+        </iron-ajax>
+
+        <iron-ajax
+                id="closeChat"
+                method="POST"
+                body="{{user}}"
+                url="../adminchat/view/endchat.php"
+                content-type="application/json"
+                headers="{{headers}}"
+                on-response="handleResponseEndChat">
+        </iron-ajax>
+
+
+
+
+
+
+
+                  <div class="container flex-center-justified">
+                      <div class="colcontent1">
+
+
+                          <div class="chat-box">
+                              <div class="chat-box-header">
+                                  <div class="header_title">Atención a [[dataUserCurrent.name_user]]<br>
+                                      <a href="mailto:[[dataUserCurrent.email_user]]" style="color: goldenrod">[[dataUserCurrent.email_user]]</a></div>
+                                  <div class="chat-box-toggle"><paper-button raised class="indigo" on-tap="_endchat">Finalizar</paper-button></div>
+
+                              </div>
+                              <div class="chat-box-body">
+                                  <div class="chat-box-overlay">
+                                  </div>
+                                  <div id="chatlogs" class="chat-logs">
+
+                                      <template is="dom-repeat" items="{{ajaxResponseList.datosapi.msgChat}}" as="item">
+                                      <div class$="chat-msg {{item.type}}">
+                                          <div class$="msg-avatar {{item.type}}f">
+                                              <span>{{item.initial}}</span>
+                                          </div>
+                                          <span class="msg-avatar"></span>
+                                          <div class$="cm-msg-text {{item.type}}m">
+                                              {{item.msg}}
+                                          </div>
+                                      </div>
+                                      </template>
+                                  </div><!--chat-log -->
+                              </div>
+                              <div class="chat-input">
+                                  <paper-input auto-validate pattern='[\[\]#"=¡!¿\(\):,-_@áÁéÉíÍóÓúÚñÑ\w\.\s]{0,250}' error-message="ERROR" id="sendMsg" value="{{inputmsg}}" label="Mensaje">
+                                      <iron-icon icon="send" slot="prefix"></iron-icon>
+                                  </paper-input>
+                                  <span id="errorInput"></span>
+                                  <!--form>
+                                      <input type="text" id="chat-input" placeholder="Mensaje..."/>
+                                      <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
+                                  </form-->
+                              </div>
+                          </div>
+
+                          <!--template is="dom-repeat" items="{{ajaxResponseList.datosapi}}" as="item">
+                          <div id="notes">
+                              <paper-card heading="{{item.nameUser}}" class="cyan">
+                                  <div class="card-actions">
+                                      <a href="chat?id={{item.id_list_chats}}">
+                                          <paper-icon-button class="iconChat" icon="question-answer" on-tap="_loadRoute" data-id="123" data-page="leccion-1">
+                                          </paper-icon-button>
+                                      </a>
+                                      <span>{{item.start_date}}</span><br>
+                                      <paper-icon-button icon="mail" on-tap="_loadRoute" data-id="123" data-page="leccion-1">
+                                      </paper-icon-button>
+                                      <span>{{item.emailUser}}</span>
+                                  </div>
+                              </paper-card>
+                          </div>
+                          </template-->
+                      </div>
+                  </div>
+    </template>
+    <script>
+            Polymer({
+                is: 'layout-response',
+                properties: {
+                    user:{
+                        type:Object,
+                        value:function() {
+                            return {
+                                i: "none",
+                                appid: "35f13ff714ce50c37baccead2e5a90c5="
+                            }
+                        },
+                        notify:true
+                    },
+                    suport:{
+                        type:Object,
+                        value:function() {
+                            return {
+                                i: "none",
+                                msg:"none",
+                                appid: "35f13ff714ce50c37baccead2e5a90c5="
+                            }
+                        },
+                        notify:true
+                    },
+                    dataUserCurrent:{
+                            type: Object,
+                            notify:true
+                    },
+                    inputmsg:{
+                        type: String,
+                        notify:true
+                    },
+                    datacurrentroute:{
+                        type: Object,
+                        notify:true
+                    },
+                    typeMsg:{
+                        type: String,
+                        notify:true
+                    },
+                    headers: {
+                        type: Object,
+                        computed: 'getHeaders(customHeader)'
+                    },
+                    customHeader: {
+                        value: '35f13ff714ce50c37baccead2e5a90c5='
+                    },
+                    cachecontrol: {
+                        value: 'max-age=0'
+                    }
+
+
+                },
+                ready: function() {
+                    this.listen(this.$.sendMsg, 'keypress', 'keyEntertk');
+                    //this._scrollToBottom();
+                    //console.log("load_elemento");
+                },
+                _endchat:function(){
+                    var r = confirm("¿Finalizar el chat actual?");
+                    if (r == true) {
+                        //console.log(this.user.i);
+                        this.$.closeChat.generateRequest();
+                    }
+                },
+                keyEntertk:function(e){
+                    if (e.keyCode==13) {
+                        var errormsgval=this.$.errorInput;
+                        this._valInput();
+                        var textExp=/^[\[\]#"=¡!¿\(\):,-_@áÁéÉíÍóÓúÚñÑ\w\.\s]{3,250}$/;
+                        if(!textExp.test(this.inputmsg)){
+                            errormsgval.innerHTML="Coloque un mensaje";
+                        }else{
+                            errormsgval.innerHTML="";
+                            this.suport.i=this.user.i;
+                            this.suport.msg=this.inputmsg;
+                            //this.orderDigit.n=this.inputSearch;
+                            this.$.requestSuportMsg.generateRequest();
+                        }
+                        //console.log("enviar");
+                        //console.log(this.inputmsg);
+                        //console.log(this.user.i);
+                    }
+                },
+                _valInput:function(){
+                    this.inputmsg
+                    /*var numOrderExp=/^[0-9]{1,8}$/;
+                    if(!numOrderExp.test(this.inputSearch)){
+                        this.msgErrorSearch("Coloque un número de pedido");
+                        this.enableInputSearch();
+                        this.enableButtonSearch();
+                    }else{
+                        this.orderDigit.n=this.inputSearch;
+                        this.$.requestNumOrder.generateRequest();
+                    }*/
+                },
+                _requestDataChat:function(){
+                    if(this.user.i!="none") {
+                        this.$.requestDataChat.generateRequest();
+                        setTimeout(this._requestDataChat.bind(this), 4000);
+                    }
+                    //this._scrollToBottom();
+                    //console.log("time");
+                },
+                _scrollToBottom:function(){
+                    this.$.chatlogs.scrollTop=this.$.chatlogs.scrollHeight;
+                },
+
+                _routeTypeChat: function(nameroute,idchat) {
+                    console.log(nameroute);
+                    console.log(idchat);
+                    if(nameroute=="chat"){
+                        this.user.i=idchat;
+                        this._requestDataChat();
+                        setTimeout(this._scrollToBottom.bind(this), 5000);
+                    }
+                },
+
+
+
+                handleResponse:function(request){
+                    var dataChatActive=request.detail.response;
+                    var datamsg=dataChatActive.datosapi.msgChat;
+                    this.dataUserCurrent=dataChatActive.datosapi.dataUser;
+                    //console.log(datamsg);
+                    //console.log(this.dataUserCurrent);
+
+                    //console.log(dataChatActive);
+                    //console.log(dataChatActive.datosapi.msgChat);
+                    //var msgResult="";
+                    //for(x in datamsg) {
+                      //  Polymer.dom(this.$.chatlogs).appendChild("<div>ok</div>");
+
+
+                        /*Polymer.dom(this.$.chatlogs).innerHTML('<div class="chat-msg '+datamsg[x].type+'">'
+                        +'<div class="msg-avatar '+datamsg[x].type+'f">'
+                        +'<span>'+datamsg[x].initial+'</span>'
+                        +'</div>'
+                        +'<span class="msg-avatar"></span>'
+                        +'<div class="cm-msg-text '+datamsg[x].type+'m">'+datamsg[x].msg+'</div>'
+                        +'</div>');*/
+                    //}
+
+                    //console.log(msgResult);
+
+
+
+
+
+                },
+                handleResponseMsg:function(request){
+                    var dataSuportMsg=request.detail.response;
+                    //console.log(dataSuportMsg);
+                },
+                handleResponseEndChat:function(request){
+                    var dataEndChat=request.detail.response;
+                    console.log(dataEndChat);
+                },
+                getHeaders: function(customHeader) {
+                    return {'Authorization': this.customHeader,'cache-control': this.cachecontrol};
+                }
+            });
+    </script>
+</dom-module>

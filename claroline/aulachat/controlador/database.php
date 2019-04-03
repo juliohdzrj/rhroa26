@@ -2,9 +2,9 @@
 class Database{
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "promociones_smb";
-    private $username = "julio2018";
-    private $password = "Jul1o*16";
+    private $db_name = "aularhchat";
+    private $username = "hdzrj";
+    private $password = "2601";
     public $conn;
     // get the database connection
     public function getConnection(){
@@ -24,7 +24,7 @@ class Database{
 /*$connexion=new Database;
 $estado=$connexion->getConnection();
 
-$query1 = "SELECT * FROM `promociones_smb`.`user_smb`;";
+$query1 = "SELECT * FROM `aularhchat`.`user_chat`;";
 $stmt = $connexion->conn->prepare($query1);
 		//$stmt = $this->conn->prepare($query1);
 		$data1=$stmt->execute();
@@ -36,5 +36,3 @@ $stmt = $connexion->conn->prepare($query1);
 
 
 //print_r($estado);
-
-?>

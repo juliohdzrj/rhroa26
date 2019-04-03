@@ -1,0 +1,456 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+<link rel="import" href="../../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-shared-styles.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+
+
+
+
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/app-layout/demo/sample-content.html">
+
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+
+<link rel="import" href="../../bower_components/paper-autocomplete/paper-autocomplete.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+
+<link rel="import" href="../../bower_components/iron-location/iron-location.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="../../bower_components/paper-badge/paper-badge.html">
+
+
+
+
+
+
+
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+
+
+<!--CUSTOM ELEMENT-->
+<link rel="import" href="../layout-listchatedo/layout-listchatedo.html">
+<link rel="import" href="../layout-response/layout-response.html">
+<!-- TERMINA CUSTOM ELEMENT-->
+
+
+
+
+<dom-module id="layout-chat">
+    <template>
+        <custom-style>
+            <style include="iron-flex iron-flex-alignment"></style>
+            <style is="custom-style">
+                app-toolbar {
+                    font-family: "MontserratRegular";
+                    background-color: #423C57;
+                    color: #fff;
+                }
+
+                paper-icon-button {
+                    --paper-icon-button-ink-color: white;
+                }
+
+                paper-icon-button + [main-title] {
+                    margin-left: 24px;
+                }
+                app-header {
+                    border-left: 1px solid #6b628f;
+                    @apply --layout-fixed-top;
+                    color: #fff;
+                }
+                app-drawer {
+                    /*--app-drawer-scrim-background: rgba(0, 0, 100, 0.8);*/
+                    --app-drawer-content-container: {
+                        background-color: #423C57;
+                    }
+                }
+                sample-content {
+                    /*padding-top: 64px;*/
+                }
+                .menumov{
+                    display: none;
+                }
+                    @media (max-width: 426px) {
+                        /* For mobile phones: */
+                        .menumov {
+                            display: block;
+                        }
+                }
+            </style>
+            <style is="custom-style">
+                paper-item{
+                    font-family: "MontserratRegular";
+                }
+                paper-item:hover{
+                    cursor: pointer;
+                }
+                paper-item.focusitem {
+                    font-size: 0.875em;
+                    color: #d9d9d9;
+                }
+
+                .listboxmenu{
+
+
+                }
+                paper-dropdown-menu, paper-listbox {
+                    /*width: 250px;*/
+                }
+                paper-dropdown-menu {
+                    /*height: 200px;*/
+                    margin: auto;
+                    display: block;
+                }
+                paper-badge {
+                    --paper-badge-margin-left: -186px;
+                    --paper-badge-margin-bottom: 0px;
+                    top: 4px !important;
+                }
+                a:link
+                {
+                    text-decoration:none;
+                }
+                paper-dialog.padinggeneral{
+                    padding: 3%;
+                }
+                .textaligncenter{
+                    text-align: center;
+                }
+                .paperIronInput{
+                    background-color: transparent;
+                    outline: none;
+                    padding: 0;
+                    margin: 0;
+                    border: 0;
+                }
+                .alingCenter{
+                    text-align: center;
+                }
+                paper-input {
+                    max-width: 400px;
+                    margin: auto;
+                }
+                paper-button {
+                    font-family: 'Roboto', 'Noto', sans-serif;
+                    font-weight: normal;
+                    font-size: 14px;
+                    -webkit-font-smoothing: antialiased;
+                }
+                paper-button.indigo {
+                    /*background-color: var(--paper-indigo-500);*/
+                    background-color: #423c57;
+                    color: white;
+                    --paper-button-raised-keyboard-focus: {
+                        background-color: var(--paper-pink-a200) !important;
+                        color: white !important;
+                    };
+                }
+                paper-button.indigo:hover {
+                    background-color: #69637e;
+                    /*background-color: var(--paper-indigo-400);*/
+                }
+                .msgerror{
+                    /*font-size: 0.75em !important;*/
+                    color: rgb(178,16,60);
+                    text-transform: none;
+                    word-break: break-word;
+                }
+            </style>
+        </custom-style>
+
+        <paper-dialog id="logbox" class="padinggeneral tok" modal opened="true"
+                      entry-animation="scale-up-animation"
+                      exit-animation="fade-out-animation">
+            <div class="textaligncenter">
+                <paper-input-container>
+                    <label slot="label">Nombre de usuario</label>
+                    <iron-input id="input2" slot="input">
+                        <input id="input22" type="text" class="paperIronInput alingCenter" value="{{nameuser::input}}">
+                    </iron-input>
+                </paper-input-container>
+                <paper-input-container>
+                    <label slot="label">Contraseña</label>
+                    <iron-input id="input3" slot="input">
+                        <input id="input33" type="password" class="paperIronInput alingCenter" value="{{pass::input}}">
+                    </iron-input>
+                </paper-input-container>
+                <p id="msgerrorin" class="msgerror">&nbsp</p>
+                <paper-button raised class="indigo" id="buttonToken" disabled$="{{buttonDisabledToken}}" on-tap="_sendlog">Siguiente</paper-button>
+            </div>
+        </paper-dialog>
+
+        <iron-ajax
+                id="requestQuantity"
+                method="POST"
+                body="{{user}}"
+                url="../adminchat/view/chatamount.php"
+                content-type="application/json"
+                headers="{{headers}}"
+                on-response="handleResponse">
+        </iron-ajax>
+
+        <iron-ajax
+                id="requestlog"
+                method="POST"
+                body="{{userCredential}}"
+                url="../adminchat/view/login.php"
+                content-type="application/json"
+                headers="{{headers}}"
+                on-response="handleResponseLog">
+        </iron-ajax>
+
+        <!--iron-location path="{{path}}" hash="{{hash}}" query="{{query}}">
+        </iron-location-->
+
+        <!--app-location route="{{route}}" use-hash-as-path></app-location>
+        <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route-->
+
+        <app-location route="{{route}}"></app-location>
+        <app-route
+                route="{{route}}"
+                pattern="/:page"
+                data="{{routeData}}"
+                tail="{{subroute}}">
+        </app-route>
+        <app-route
+                route="{{subroute}}"
+                pattern="/:subpage"
+                data="{{subrouteData}}">
+        </app-route>
+
+        <!--app-location route="{{route}}"></app-location>
+        <app-route
+                route="{{route}}"
+                pattern="/:pagetest"
+                data="{{routeData}}"
+                tail="{{tail}}">
+        </app-route-->
+
+
+            <app-drawer-layout>
+                <app-drawer id="drawer" slot="drawer" swipe-open>
+                    <div id="menulist" role="listbox" class="listboxmenu">
+                        <div style="height: 64px"></div>
+                        <a href="search?type=active" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                    Activos
+                                    <paper-badge label="[[chatAmount]]"></paper-badge>
+                            </paper-item>
+                        </a>
+                        <a href="search?type=closed" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Cerrados
+                            </paper-item>
+                        </a>
+                        <!--paper-item class="focusitem" on-tap="_loadpage">Nuevo registro</paper-item-->
+                    </div>
+
+                </app-drawer>
+              <app-header-layout>
+                <app-header slot="header" shadow fixed effects="waterfall">
+                    <app-toolbar>
+                        <paper-icon-button class="menumov" icon="menu" drawer-toggle></paper-icon-button>
+                        <div main-title style="text-transform: uppercase">CHAT {{route.__queryParams.type}}</div>
+                    </app-toolbar>
+                </app-header>
+
+                  <div class="container flex-center-justified">
+                      <iron-pages selected="{{subrouteData.subpage}}" attr-for-selected="data-route" id="pages" selected="0">
+                          <layout-listchatedo class="pagechage" data-route="search" datacurrentroute="{{subrouteData}}" dataparams="{{route.__queryParams}}">
+                          </layout-listchatedo>
+                          <layout-response class="pagechage" data-route="chat" datacurrentroute="{{subrouteData}}" dataparams="{{route.__queryParams}}">
+                          </layout-response>
+                      </iron-pages>
+                  </div>
+
+                <!--sample-content size="10"></sample-content-->
+              </app-header-layout>
+            </app-drawer-layout>
+    </template>
+    <script>
+            Polymer({
+                is: 'layout-chat',
+                properties: {
+                    route:{
+                        type:Object,
+                        notify:true
+                    },
+                    routeData:{
+                        type:Object,
+                        notify:true
+                    },
+                    subroute:{
+                        type:Object,
+                        notify:true
+                    },
+                    subrouteData:{
+                        type:Object,
+                        notify:true
+                    },
+                    headers: {
+                        type: Object,
+                        computed: 'getHeaders(customHeader)'
+                    },
+                    customHeader: {
+                        value: '35f13ff714ce50c37baccead2e5a90c5='
+                    },
+                    cachecontrol: {
+                        value: 'max-age=0'
+                    },
+                    chatAmount:{
+                        type:Number,
+                        value:0,
+                        notify:true
+                    },
+                    user:{
+                        type:Object,
+                        value:function() {
+                            return {
+                                u: "none",
+                                appid: "35f13ff714ce50c37baccead2e5a90c5="
+                            }
+                        },
+                        notify:true
+                    },
+                    userCredential:{
+                        type:Object,
+                        value:function() {
+                            return {
+                                u: "none",
+                                p: "none",
+                                appid: "35f13ff714ce50c37baccead2e5a90c5="
+                            }
+                        }
+                    },
+                    nameuser:{
+                        type:Text
+                    },
+                    pass:{
+                      type:Text
+                    }
+
+                    /*routeAction:{
+                        type: Object,
+                        computed: 'getRoute(route)'
+                    }*/
+
+
+                    /*path:{
+             type:Object,
+             notify:true
+             },
+             hash:{
+             type:Object,
+             notify:true
+             },
+             query:{
+             type:Object,
+             notify:true
+             }*/
+
+
+                },
+                ready: function() {
+                    this._loopRequestQuantity();
+                    //window.history.pushState("object or string", "Chat Active", "search?type=active");
+                    //console.log("-------");
+                    //console.log(this.route);
+                    console.log(this.route.__queryParams);
+                    //console.log(this.routeData);
+                    console.log(this.subroute);
+                    //console.log(this.subrouteData);
+
+                },
+                _sendlog:function(){
+                    this.userCredential.u=this.nameuser;
+                    this.userCredential.p=this.pass;
+                    this.$.requestlog.generateRequest();
+                },
+                _loopRequestQuantity:function(){
+                    setTimeout(this._loopRequestQuantity.bind(this), 5000);
+                    this.$.requestQuantity.generateRequest();
+                },
+                attached: function() {
+
+                },
+                _onTap: function() {
+                    this.$.drawer.toggle();
+                },
+                _loadpage: function(e) {
+                    //CHANGE COLOR ITEM SELECT
+                    var elementSelect = this.$$('#menulist').querySelectorAll(".focusitem");
+                    var numelements=elementSelect.length;
+                    for (i=0;i<numelements;i++) {
+                        elementSelect[i].style.backgroundColor="#423c57";
+                        elementSelect[i].style.color="#d9d9d9";
+                    }
+                    //e.path[0].style.backgroundColor="rgb(84, 79, 102)";
+                    //e.path[0].style.color="#ffffff";
+                    e.target.style.backgroundColor="rgb(84, 79, 102)";
+                    e.target.style.color="#ffffff";
+                    //TERMINA CHANGE COLOR ITEM SELECT
+                },
+                handleResponse:function(request){
+                    var dataChatAmount=request.detail.response;
+                    if(dataChatAmount.msg=="valdata"){
+                        this.chatAmount=dataChatAmount.datosapi.numberrow;
+                    }
+
+                    //console.log(dataChatAmount.msg);
+                    //console.log(request);
+                },
+                handleResponseLog:function(request){
+                    var dataLog=request.detail.response;
+                    if(dataLog.msg!="valdata"){
+                        this.$.msgerrorin.innerHTML=dataLog.msg;
+                    }else{
+                        if(dataLog.datosapi.isPlatFormAdmin==1){
+                            this.$.logbox.close();
+                        }else{
+                            this.$.msgerrorin.innerHTML="No autorizado";
+                        }
+                    }
+                    console.log(dataLog);
+                    //this.$.logbox.close();
+                },
+                /*getRoute:function(routeCurrent){
+                    console.log(routeCurrent);
+                },*/
+                getHeaders: function(customHeader) {
+                    return {'Authorization': this.customHeader,'cache-control': this.cachecontrol};
+                }
+            });
+    </script>
+</dom-module>

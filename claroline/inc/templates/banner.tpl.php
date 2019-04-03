@@ -1,12 +1,44 @@
 <!-- $Id: banner.tpl.php 13151 2011-05-11 12:09:47Z abourguignon $ -->
 
 <!-- claroPage -->
+
+<div id="chat-circle" class="btn btn-raised">
+    <div id="chat-overlay"></div>
+    <i class="material-icons">chat</i>
+</div>
+
+<div class="chat-box">
+    <div class="chat-box-header">
+        <div style="float:left;margin-top:7px;margin-left:7px;"><button type="button" class="btn btn-primary" id="chat-close">Cerrar</button></div>
+        <div style="float:right;padding-top:10px;padding-right:10px;"><span class="chat-box-toggle"><i class="material-icons">close</i></span></div>
+    </div>
+    <div class="chat-box-body">
+        <div class="chat-box-overlay">
+        </div>
+        <div class="chat-logs">
+
+        </div><!--chat-log -->
+    </div>
+    <div class="chat-input">
+        <form>
+            <input type="text" id="chat-input" placeholder="Mensaje..."/>
+            <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
+        </form>
+    </div>
+</div>
+
+
+
 <div id="claroPage" class="container">
+
+
+
+
 
 <!-- Banner -->
 <div id="topBanner">
     <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
+    <!--script type="text/javascript">
         var _smartsupp = _smartsupp || {};
         _smartsupp.key = '66649493d5daa55e24113ba1477c932db7b85a62';
         window.smartsupp||(function(d) {
@@ -15,12 +47,18 @@
             c.type='text/javascript';c.charset='utf-8';c.async=true;
             c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
         })(document);
-    </script>
+    </script-->
 <!-- Platform Banner -->
 <div id="platformBanner" class="row">
     <div id="campusBannerLeft" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 	    <div class="logoaula">
-		    <?php if (isset($_SESSION["_user"]["userId"])) : ?>
+
+		    <?php
+		    //$valueChat1=$_SESSION["_user"]["username"]."-".$_SESSION["_user"]["firstName"]."-".$_SESSION["_user"]["lastName"]."-".$_SESSION["_user"]["mail"]."-".$_SESSION["_user"]["phone"];
+            $valueChat=base64_encode($_SESSION["_user"]["username"]."-".$_SESSION["_user"]["firstName"]."-".$_SESSION["_user"]["lastName"]."-".$_SESSION["_user"]["mail"]."-".$_SESSION["_user"]["phone"]);
+            setcookie("iu", $valueChat);
+            //echo $valueChat1;
+		    if (isset($_SESSION["_user"]["userId"])) : ?>
         <span id="siteName">
             <a href="<?php echo get_path('url'); ?>/index.php" target="_top">
             <?php if (get_conf('siteLogo') != '') : ?>
@@ -143,3 +181,4 @@
 
 </div>
 <!-- End of topBanner -->
+

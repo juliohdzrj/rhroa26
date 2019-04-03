@@ -1,0 +1,1070 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+<link rel="import" href="../../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-shared-styles.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+
+
+
+
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/app-layout/demo/sample-content.html">
+
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+
+<link rel="import" href="../../bower_components/paper-autocomplete/paper-autocomplete.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+
+<link rel="import" href="../../bower_components/iron-location/iron-location.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<link rel="import" href="../../bower_components/paper-badge/paper-badge.html">
+
+
+
+
+
+
+
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+
+
+<link rel="import" href="../../bower_components/iron-demo-helpers/demo-snippet.html">
+<!--link rel="import" href="../../bower_components/sliding-pages/sliding-pages.html"-->
+<link rel="import" href="../../bower_components/d3-progress-meter/d3-progress-meter.html">
+<link rel="import" href="../../bower_components/l2t-paper-slider/l2t-paper-slider.html">
+
+
+
+
+
+
+<!--CUSTOM ELEMENT-->
+<!--link rel="import" href="../layout-listchatedo/layout-listchatedo.html">
+<link rel="import" href="../layout-response/layout-response.html"-->
+<!-- TERMINA CUSTOM ELEMENT-->
+
+
+
+
+<dom-module id="layout-curso">
+    <template>
+        <custom-style>
+
+            <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+            <style is="custom-style">
+                app-toolbar {
+                    font-family: "MontserratRegular";
+                    background-color: #423C57;
+                    color: #fff;
+                }
+
+                paper-icon-button {
+                    --paper-icon-button-ink-color: white;
+                }
+
+                paper-icon-button + [main-title] {
+                    margin-left: 24px;
+                }
+                app-header {
+                    border-left: 1px solid #6b628f;
+                    @apply --layout-fixed-top;
+                    color: #fff;
+                }
+                app-drawer {
+                    /*--app-drawer-scrim-background: rgba(0, 0, 100, 0.8);*/
+                    --app-drawer-content-container: {
+                        background-color: #423C57;
+                    }
+                }
+                sample-content {
+                    /*padding-top: 64px;*/
+                }
+                .menumov{
+                    display: none;
+                }
+                    @media (max-width: 426px) {
+                        /* For mobile phones: */
+                        .menumov {
+                            display: block;
+                        }
+                }
+            </style>
+            <style is="custom-style">
+                paper-item{
+                    font-family: "MontserratRegular";
+                }
+                paper-item:hover{
+                    cursor: pointer;
+                }
+                paper-item.focusitem {
+                    font-size: 0.875em;
+                    color: #d9d9d9;
+                }
+
+                .listboxmenu{
+
+
+                }
+                paper-dropdown-menu, paper-listbox {
+                    /*width: 250px;*/
+                }
+                paper-dropdown-menu {
+                    /*height: 200px;*/
+                    margin: auto;
+                    display: block;
+                }
+                paper-badge {
+                    --paper-badge-margin-left: -186px;
+                    --paper-badge-margin-bottom: 0px;
+                    top: 4px !important;
+                }
+                a:link
+                {
+                    text-decoration:none;
+                }
+                paper-dialog.padinggeneral{
+                    padding: 3%;
+                }
+                .textaligncenter{
+                    text-align: center;
+                }
+                .paperIronInput{
+                    background-color: transparent;
+                    outline: none;
+                    padding: 0;
+                    margin: 0;
+                    border: 0;
+                }
+                .alingCenter{
+                    text-align: center;
+                }
+                paper-input {
+                    max-width: 400px;
+                    margin: auto;
+                }
+                paper-button {
+                    font-family: 'Roboto', 'Noto', sans-serif;
+                    font-weight: normal;
+                    font-size: 14px;
+                    -webkit-font-smoothing: antialiased;
+                }
+                paper-button.indigo {
+                    /*background-color: var(--paper-indigo-500);*/
+                    background-color: #423c57;
+                    color: white;
+                    --paper-button-raised-keyboard-focus: {
+                        background-color: var(--paper-pink-a200) !important;
+                        color: white !important;
+                    };
+                }
+                paper-button.indigo:hover {
+                    background-color: #69637e;
+                    /*background-color: var(--paper-indigo-400);*/
+                }
+                .msgerror{
+                    /*font-size: 0.75em !important;*/
+                    color: rgb(178,16,60);
+                    text-transform: none;
+                    word-break: break-word;
+                }
+        </style>
+            <!--style-- is="custom-style" include="demo-pages-shared-styles">
+                sliding-pages{
+                    /*margin-top: 3%;
+                    height: 500px;*/
+                    padding: 3%;
+                    width: 89%;
+                    margin: 0 auto;
+                    height: 486px;
+                    /*margin-top: 3%;
+                    margin: 0 auto;*/
+                }
+                sliding-pages > div {
+                    color: white;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    user-select: none;
+                    cursor: pointer;
+                }
+                sliding-pages div:nth-of-type(1) {
+                    /*--page-background-color: var(--paper-red-500);*/
+                    --page-background-color:#423c57;
+                }
+                sliding-pages div:nth-of-type(2) {
+                    /*--page-background-color: var(--paper-blue-500);*/
+                    --page-background-color:#423c57;
+                }
+                sliding-pages div:nth-of-type(3) {
+                    /*--page-background-color: var(--paper-green-500);*/
+                    --page-background-color:#423c57;
+                }
+                sliding-pages div:nth-of-type(4) {
+                    /*--page-background-color: var(--paper-yellow-500);*/
+                    --page-background-color:#423c57;
+                }
+                sliding-pages div:nth-of-type(5) {
+                    /*--page-background-color: var(--paper-purple-500);*/
+                    --page-background-color:#423c57;
+                }
+            </style-->
+            <style is="custom-style">
+                .flex-center-justified {
+                    @apply --layout-horizontal;
+                    @apply --layout-center-justified;
+                }
+            </style>
+            <style is="custom-style">
+                l2t-paper-slider {
+                    --paper-slide-height: 526px;
+                    --paper-slide-dot-selected:#423C57;
+                    --paper-slide-dot-styles:{
+                        color: tomato;
+                        background-color: tomato;
+                    }
+                }
+
+                paper-slide {
+                    line-height: 200px;
+                    font-size: 64px;
+                    text-align: center;
+                    vertical-align: middle;
+                    /*color: white
+                   background: tomato;*/
+
+                }
+            </style>
+        </custom-style>
+
+        <!--iron-ajax
+                id="requestQuantity"
+                method="POST"
+                body="{{user}}"
+                url="../adminchat/view/chatamount.php"
+                content-type="application/json"
+                headers="{{headers}}"
+                on-response="handleResponse">
+        </iron-ajax-->
+
+        <app-location route="{{route}}"></app-location>
+        <app-route
+                route="{{route}}"
+                pattern="/:page"
+                data="{{routeData}}"
+                tail="{{subroute}}">
+        </app-route>
+        <app-route
+                route="{{subroute}}"
+                pattern="/:subpage"
+                data="{{subrouteData}}">
+        </app-route>
+            <app-drawer-layout>
+                <app-drawer id="drawer" slot="drawer" swipe-open>
+                    <div id="menulist" role="listbox" class="listboxmenu">
+                        <div style="height: 64px"></div>
+                        <a href="introduccion?title=Introducción" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                    Introducción
+                            </paper-item>
+                        </a>
+                        <a href="filosofia?title=Filosofía Organizacional" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Filosofía Organizacional
+                            </paper-item>
+                        </a>
+                        <a href="empresas?title=Nuestras Empresas y Clientes" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Nuestras Empresas y Clientes
+                            </paper-item>
+                        </a>
+                        <a href="estructura?title=Estructura Organizacional" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Estructura Organizacional
+                            </paper-item>
+                        </a>
+                        <a href="reglamento?title=Reglamento Interno" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Reglamento Interno
+                            </paper-item>
+                        </a>
+                        <a href="imagen?title=Código de Imagen" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Código de Imagen
+                            </paper-item>
+                        </a>
+                        <a href="recomendaciones?title=Recomendaciones Generales" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Recomendaciones Generales
+                            </paper-item>
+                        </a>
+                        <a href="beneficios?title=Beneficios" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Beneficios
+                            </paper-item>
+                        </a>
+                        <a href="pacticas?title=Buenas Prácticas" on-tap="_loadpage">
+                            <paper-item class="focusitem" page-select="buscar">
+                                Buenas Prácticas
+                            </paper-item>
+                        </a>
+                        <!--paper-item class="focusitem" on-tap="_loadpage">Nuevo registro</paper-item-->
+                    </div>
+                </app-drawer>
+              <app-header-layout>
+                <app-header slot="header" shadow fixed effects="waterfall">
+                    <app-toolbar>
+                        <paper-icon-button class="menumov" icon="menu" drawer-toggle></paper-icon-button>
+                        <div main-title style="text-transform: uppercase">Curso 1&nbsp;&nbsp;&nbsp;{{route.__queryParams.title}}
+                            </div>
+                    </app-toolbar>
+                </app-header>
+
+                  <div class="container flex-center-justified">
+                      <iron-pages selected="{{subrouteData.subpage}}" attr-for-selected="data-route" id="pages" selected="0" style="width:90%">
+                          <div class="pagechage" data-route="introduccion">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage]]" current-text="[[textPorcentage]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/introduccion1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/introduccion1.jpg" width="100%" alt=""></a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/introduccion2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/introduccion2.jpg" width="100%" alt=""></a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/introduccion3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/introduccion3.jpg" width="100%" alt=""></a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="filosofia">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage2]]" current-text="[[textPorcentage2]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex2}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/filosofia.jpg">
+                                              <img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/filosofia.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/filosofia2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/filosofia2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="empresas">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage3]]" current-text="[[textPorcentage3]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex3}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas1.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas3.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas4.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas4.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas5.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas5.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas6.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas6.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas7.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/empresas7.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="estructura">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage4]]" current-text="[[textPorcentage4]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex4}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura1.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura3.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura4.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/estructura4.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="reglamento">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage5]]" current-text="[[textPorcentage5]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex5}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento1.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento3.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento4.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento4.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento5.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento5.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento6.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/reglamento6.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="imagen">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage6]]" current-text="[[textPorcentage6]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex6}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen1.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen3.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen4.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/imagen4.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="recomendaciones">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage7]]" current-text="[[textPorcentage7]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex7}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/recomendaciones1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/recomendaciones1.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/recomendaciones2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/recomendaciones2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/recomendaciones3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/recomendaciones3.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="beneficios">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage8]]" current-text="[[textPorcentage8]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex8}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/beneficios1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/beneficios1.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/beneficios2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/beneficios2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/beneficios3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/beneficios3.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <div class="pagechage" data-route="pacticas">
+                              <d3-progress-meter radius="25" percentage="[[numberPorcentage9]]" current-text="[[textPorcentage9]]" style="--radius:25px; padding-bottom: 0;padding-top: 1%;padding-left: 2%;"></d3-progress-meter>
+                              <l2t-paper-slider position="{{numindex9}}">
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/practicas1.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/practicas1.jpg" width="100%" alt=""></a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/practicas2.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/practicas2.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                                  <paper-slide>
+                                      <div style="width: 63%;margin:0 auto;height:500px;">
+                                          <a target="_blank" href="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/practicas3.jpg"><img src="https://aula.gruporo.com.mx/cursos/curso1/cssgen/img/practicas3.jpg" width="100%" alt="">
+                                          </a>
+                                      </div>
+                                  </paper-slide>
+                              </l2t-paper-slider>
+                          </div>
+                          <!--layout-listchatedo class="pagechage" data-route="search" datacurrentroute="{{subrouteData}}" dataparams="{{route.__queryParams}}">
+                          </layout-listchatedo>
+                          <layout-response class="pagechage" data-route="chat" datacurrentroute="{{subrouteData}}" dataparams="{{route.__queryParams}}">
+                          </layout-response-->
+                      </iron-pages>
+                  </div>
+
+
+                <!--sample-content size="10"></sample-content-->
+              </app-header-layout>
+            </app-drawer-layout>
+    </template>
+    <script>
+            Polymer({
+                is: 'layout-curso',
+                properties: {
+                    route:{
+                        type:Object,
+                        notify:true
+                    },
+                    routeData:{
+                        type:Object,
+                        notify:true
+                    },
+                    subroute:{
+                        type:Object,
+                        notify:true
+                    },
+                    subrouteData:{
+                        type:Object,
+                        notify:true
+                    },
+                    headers: {
+                        type: Object,
+                        computed: 'getHeaders(customHeader)'
+                    },
+                    customHeader: {
+                        value: '35f13ff714ce50c37baccead2e5a90c5='
+                    },
+                    cachecontrol: {
+                        value: 'max-age=0'
+                    },
+                    //propiedades por slider
+                    numindex: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage:String,
+                    numberPorcentage:Number,
+                    numelements: {
+                        type: Number,
+                        value: 2
+                    },
+                    numberPageSlide1:{
+                        type:Number,
+                        computed:'obtenerIndex(numindex,numelements)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex2: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage2:String,
+                    numberPorcentage2:Number,
+                    numelements2: {
+                        type: Number,
+                        value: 1
+                    },
+                    numberPageSlide2:{
+                        type:Number,
+                        computed:'obtenerIndex2(numindex2,numelements2)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex3: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage3:String,
+                    numberPorcentage3:Number,
+                    numelements3: {
+                        type: Number,
+                        value: 6
+                    },
+                    numberPageSlide3:{
+                        type:Number,
+                        computed:'obtenerIndex3(numindex3,numelements3)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex4: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage4:String,
+                    numberPorcentage4:Number,
+                    numelements4: {
+                        type: Number,
+                        value: 3
+                    },
+                    numberPageSlide4:{
+                        type:Number,
+                        computed:'obtenerIndex4(numindex4,numelements4)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex4: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage5:String,
+                    numberPorcentage5:Number,
+                    numelements5: {
+                        type: Number,
+                        value: 5
+                    },
+                    numberPageSlide5:{
+                        type:Number,
+                        computed:'obtenerIndex5(numindex5,numelements5)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex6: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage6:String,
+                    numberPorcentage6:Number,
+                    numelements6: {
+                        type: Number,
+                        value: 3
+                    },
+                    numberPageSlide6:{
+                        type:Number,
+                        computed:'obtenerIndex6(numindex6,numelements6)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex7: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage7:String,
+                    numberPorcentage7:Number,
+                    numelements7: {
+                        type: Number,
+                        value: 2
+                    },
+                    numberPageSlide7:{
+                        type:Number,
+                        computed:'obtenerIndex7(numindex7,numelements7)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex8: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage8:String,
+                    numberPorcentage8:Number,
+                    numelements8: {
+                        type: Number,
+                        value: 2
+                    },
+                    numberPageSlide8:{
+                        type:Number,
+                        computed:'obtenerIndex8(numindex8,numelements8)'
+                    },
+                    //termina propiedades por slider
+                    //propiedades por slider
+                    numindex9: {
+                        type: Number,
+                        value: 0
+                    },
+                    textPorcentage9:String,
+                    numberPorcentage9:Number,
+                    numelements9: {
+                        type: Number,
+                        value: 2
+                    },
+                    numberPageSlide9:{
+                        type:Number,
+                        computed:'obtenerIndex9(numindex9,numelements9)'
+                    }
+                    //termina propiedades por slider
+                    /*
+                    chatAmount:{
+                        type:Number,
+                        value:0,
+                        notify:true
+                    },
+                    user:{
+                        type:Object,
+                        value:function() {
+                            return {
+                                u: "none",
+                                appid: "35f13ff714ce50c37baccead2e5a90c5="
+                            }
+                        },
+                        notify:true
+                    },
+                    userCredential:{
+                        type:Object,
+                        value:function() {
+                            return {
+                                u: "none",
+                                p: "none",
+                                appid: "35f13ff714ce50c37baccead2e5a90c5="
+                            }
+                        }
+                    },
+                    nameuser:{
+                        type:Text
+                    },
+                    pass:{
+                      type:Text
+                    }
+                    */
+                },
+                ready: function() {
+                    //window.location.replace("https://aula.gruporo.com.mx/curso12/introduccion?title=Introducci%C3%B3n");
+                    //this._loopRequestQuantity();
+                    //window.history.pushState("object or string", "Introducción", "Introducción");
+                    //console.log("-------");
+                    //console.log(this.route);
+                    console.log(this.route.__queryParams);
+                    //console.log(this.routeData);
+                    console.log(this.subroute);
+                    //console.log(this.subrouteData);
+                    //const pages = document.querySelector('sliding-pages');
+                    //console.log(pages);
+
+                },
+                _loadpage: function(e) {
+                    //CHANGE COLOR ITEM SELECT
+                    var elementSelect = this.$$('#menulist').querySelectorAll(".focusitem");
+                    var numelements=elementSelect.length;
+                    for (i=0;i<numelements;i++) {
+                        elementSelect[i].style.backgroundColor="#423c57";
+                        elementSelect[i].style.color="#d9d9d9";
+                    }
+                    //e.path[0].style.backgroundColor="rgb(84, 79, 102)";
+                    //e.path[0].style.color="#ffffff";
+                    e.target.style.backgroundColor="rgb(84, 79, 102)";
+                    e.target.style.color="#ffffff";
+                    //TERMINA CHANGE COLOR ITEM SELECT
+                },
+                obtenerIndex:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                    var percentageText=Math.round((numindexchange*100)/numfullelement);
+                    var percentageNumber=percentageText/100;
+                    this.textPorcentage=percentageText+"%";
+                    this.numberPorcentage=percentageNumber;
+                    console.log(percentageText);
+                    console.log(percentageNumber);
+                    }
+
+                    //var pagesS1=Polymer.dom(this.root).querySelector("#"+idelement);
+                    //var currIndex=parseInt(pagesS1.getAttribute('active-index'));
+                    //pagesS1.setAttribute('active-index', (currIndex - 1));
+                },
+                obtenerIndex2:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage2=percentageText+"%";
+                        this.numberPorcentage2=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                },
+                obtenerIndex3:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage3=percentageText+"%";
+                        this.numberPorcentage3=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                },
+                obtenerIndex4:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage4=percentageText+"%";
+                        this.numberPorcentage4=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                },
+                obtenerIndex5:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage5=percentageText+"%";
+                        this.numberPorcentage5=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                },
+                obtenerIndex6:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage6=percentageText+"%";
+                        this.numberPorcentage6=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                },
+                obtenerIndex7:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage7=percentageText+"%";
+                        this.numberPorcentage7=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                },
+                obtenerIndex8:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage8=percentageText+"%";
+                        this.numberPorcentage8=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                },
+                obtenerIndex9:function(numindexchange,numfullelement){
+                    console.log(numindexchange);
+                    console.log(numfullelement);
+                    if(numindexchange<=numfullelement){
+                        var percentageText=Math.round((numindexchange*100)/numfullelement);
+                        var percentageNumber=percentageText/100;
+                        this.textPorcentage9=percentageText+"%";
+                        this.numberPorcentage9=percentageNumber;
+                        console.log(percentageText);
+                        console.log(percentageNumber);
+                    }
+                }
+
+                /*prevPages1:function(){
+                  var pages=this.$.s1;
+                  var currIndex=parseInt(pages.getAttribute('active-index'));
+                  if(currIndex>0) {
+                      pages.setAttribute('active-index', (currIndex - 1));
+                  }
+                },
+                nextPage1:function(){
+                    var pages=this.$.s1;
+                    var currIndex=parseInt(pages.getAttribute('active-index'));
+                    if(currIndex<this.numelements) {
+                    pages.setAttribute('active-index', (currIndex + 1));
+                    }
+                },
+                prevPages2:function(){
+                    var pages=this.$.s2;
+                    var currIndex=parseInt(pages.getAttribute('active-index'));
+                    if(currIndex>0) {
+                        pages.setAttribute('active-index', (currIndex - 1));
+                    }
+                },
+                nextPage2:function(){
+                    var pages=this.$.s2;
+                    var currIndex=parseInt(pages.getAttribute('active-index'));
+                    if(currIndex<this.numelements) {
+                        pages.setAttribute('active-index', (currIndex + 1));
+                    }
+                }*/
+                /*_sendlog:function(){
+                    this.userCredential.u=this.nameuser;
+                    this.userCredential.p=this.pass;
+                    this.$.requestlog.generateRequest();
+                },
+                _loopRequestQuantity:function(){
+                    setTimeout(this._loopRequestQuantity.bind(this), 5000);
+                    this.$.requestQuantity.generateRequest();
+                },
+                attached: function() {
+
+                },
+                _onTap: function() {
+                    this.$.drawer.toggle();
+                },
+                _loadpage: function(e) {
+                    //CHANGE COLOR ITEM SELECT
+                    var elementSelect = this.$$('#menulist').querySelectorAll(".focusitem");
+                    var numelements=elementSelect.length;
+                    for (i=0;i<numelements;i++) {
+                        elementSelect[i].style.backgroundColor="#423c57";
+                        elementSelect[i].style.color="#d9d9d9";
+                    }
+                    //e.path[0].style.backgroundColor="rgb(84, 79, 102)";
+                    //e.path[0].style.color="#ffffff";
+                    e.target.style.backgroundColor="rgb(84, 79, 102)";
+                    e.target.style.color="#ffffff";
+                    //TERMINA CHANGE COLOR ITEM SELECT
+                },
+                handleResponse:function(request){
+                    var dataChatAmount=request.detail.response;
+                    if(dataChatAmount.msg=="valdata"){
+                        this.chatAmount=dataChatAmount.datosapi.numberrow;
+                    }
+
+                    //console.log(dataChatAmount.msg);
+                    //console.log(request);
+                },
+                handleResponseLog:function(request){
+                    var dataLog=request.detail.response;
+                    if(dataLog.msg!="valdata"){
+                        this.$.msgerrorin.innerHTML=dataLog.msg;
+                    }else{
+                        if(dataLog.datosapi.isPlatFormAdmin==1){
+                            this.$.logbox.close();
+                        }else{
+                            this.$.msgerrorin.innerHTML="No autorizado";
+                        }
+                    }
+                    console.log(dataLog);
+                    //this.$.logbox.close();
+                },
+                /*getRoute:function(routeCurrent){
+                 console.log(routeCurrent);
+                 },*/
+                /*getHeaders: function(customHeader) {
+                    return {'Authorization': this.customHeader,'cache-control': this.cachecontrol};
+                }*/
+            });
+    </script>
+    <script>
+        //const pages = document.querySelector('sliding-pages');
+        //console.log(pages);
+
+        /*function prevPage() {
+            const currIndex = parseInt(pages.getAttribute('active-index'));
+            pages.setAttribute('active-index', (currIndex - 1));
+        }
+        function nextPage() {
+            const currIndex = parseInt(pages.getAttribute('active-index'));
+            pages.setAttribute('active-index', (currIndex + 1))
+        }*/
+    </script>
+</dom-module>

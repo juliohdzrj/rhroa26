@@ -1,14 +1,38 @@
-#Options -Multiviews
-#Options +FollowSymLinks
+Options -Multiviews
+Options +FollowSymLinks
 #RewriteEngine On
-#RewriteBase /
-#RewriteCond %{HTTPS} on
-#RewriteCond %{HTTP_HOST} ^www\.(.*)
-#RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+#FUNCIONA PARA UNA CARPETA
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule .* /adminchat/
+#TERMINA FUNCIONA PARA UNA CARPETA
+
+#RewriteRule . /adminchat/index.html [L]
+
+# https: redirect to safe Product url
+RewriteEngine On
+RewriteBase /
+RewriteRule "^adminchat/search$" "/adminchat/"
+RewriteRule "^adminchat/chat$" "/adminchat/"
+#RewriteRule "^cupones-comerciales-(.*)$" "./consultafg-test.php?1perAwtXyzdd22ret56=cupones-comerciales-$1"
+RewriteRule "^curso12/introduccion$" "/curso12/"
+RewriteRule "^curso12/filosofia" "/curso12/"
+RewriteRule "^curso12/empresas" "/curso12/"
+RewriteRule "^curso12/estructura" "/curso12/"
+RewriteRule "^curso12/reglamento" "/curso12/"
+RewriteRule "^curso12/imagen" "/curso12/"
+RewriteRule "^curso12/recomendaciones" "/curso12/"
+RewriteRule "^curso12/beneficios" "/curso12/"
+RewriteRule "^curso12/pacticas" "/curso12/"
+
+#RewriteRule .* https://aula.gruporo.com.mx/curso12/ [R,L]
 
 
 
-RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} ^www\.(.*)
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+#RewriteRule . /curso12/index.html [L]
+
+
+#Redirect https://aula.gruporo.com.mx/adminchat/search https://aula.gruporo.com.mx/adminchat
+#RewriteRule ^search/index.html$ adminchat [R=301,NC,L]
 

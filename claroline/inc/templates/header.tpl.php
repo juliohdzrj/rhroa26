@@ -24,7 +24,9 @@
 <meta http-equiv="Content-Type" content="text/HTML; charset=<?php echo get_locale('charset');?>"  />
 <meta name="generator" content="Claroline <?php echo $this->version; ?> - http://claroline.net" />
     <link rel="stylesheet" href="../../../web/css/bootstrap.min.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
+    <link rel="stylesheet" type="text/css" href="../../../web/css/chataro.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <?php echo link_to_css( get_conf('claro_stylesheet') . '/main.css', 'screen, projection, tv' ) . "\n";?>
 <?php
@@ -48,5 +50,5 @@ endif;
 
 <?php echo $this->htmlScriptDefinedHeaders . "\n";?>
     <script src="../../../web/js/bootstrap.min.js"></script>
-
+    <script src="../../../web/js/modchat.js"></script>
 </head>

@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="es"><head>
+    <title>Curso1 v2 | Aula Grupo RO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://aula.gruporo.com.mx/favicon.ico">
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="stylesheet" type="text/css" href="cssgen/cssgen.css">
+    <link rel="stylesheet" type="text/css" href="cssgen/general.css">
+    <!--link rel="stylesheet" href="cssgen/cssgen.css"-->
+    <script>
+        var importDoc = document.currentScript.ownerDocument;
+        var style = importDoc.querySelector('link[rel=stylesheet]');
+        document.head.appendChild(style);
+            //console.log(document.currentScript.ownerDocument);
+        app={};
+        app={
+            explorercheck:function(){
+                /*alert("ok");
+                 var es_ie = navigator.userAgent.indexOf("MSIE") > -1 ;
+                 if(es_ie){
+                 alert("El navegador que se está utilizando es Internet Explorer");
+                 }*/
+
+                var version = app.detectIE();
+
+                if (version === false) {
+                    //document.getElementById('result').innerHTML = '<s>IE/Edge</s>';
+                } else if (version >= 12) {
+                    //document.getElementById('result').innerHTML = 'Edge ' + version;
+                    return false;
+                } else {
+                    //document.getElementById('result').innerHTML = '' + version;
+                    document.getElementById('result').innerHTML = 'Esta aplicación no es compatible con <b>Internet Explorer</b>. Te recomendamos usar <b>Google Chrome, Firefox, Microsoft Edge</b>.';
+                }
+
+// add details to debug result
+                //document.getElementById('details').innerHTML = window.navigator.userAgent;
+
+
+
+
+            },
+            /**
+             * detect IE
+             * returns version of IE or false, if browser is not Internet Explorer
+             */
+            detectIE:function() {
+                var ua = window.navigator.userAgent;
+
+                // Test values; Uncomment to check result …
+
+                // IE 10
+                // ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
+
+                // IE 11
+                // ua = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+
+                // Edge 12 (Spartan)
+                // ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
+
+                // Edge 13
+                // ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
+
+                var msie = ua.indexOf('MSIE ');
+                if (msie > 0) {
+                    // IE 10 or older => return version number
+                    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+                }
+
+                var trident = ua.indexOf('Trident/');
+                if (trident > 0) {
+                    // IE 11 => return version number
+                    var rv = ua.indexOf('rv:');
+                    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+                }
+
+                var edge = ua.indexOf('Edge/');
+                if (edge > 0) {
+                    // Edge (IE 12+) => return version number
+                    return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+                }
+
+                // other browser
+                return false;
+            }
+
+        }
+
+        function polyfillcomponent() {
+            if ('registerElement' in document) {
+                //console.log("platform is good!");
+            } else {
+                // polyfill the platform!
+                var e = document.createElement('script');
+                e.src = 'bower_components/webcomponentsjs/webcomponents-loader.js';
+                document.head.appendChild(e);
+                //alert("polyfill the platform!");
+            }
+            //heightwindow();
+        }
+
+        /*function heightwindow(){
+         var heightEjeY;
+         heightEjeY=window.innerHeight;
+         //alert(heightEjeY);
+         document.body.setAttribute("style","height:"+heightEjeY+"px");
+         document.body.style.height=heightEjeY+"px";
+         }*/
+        window.onload = polyfillcomponent;
+    </script>
+    <link rel="import" href="elements/layout-curso/layout-curso.html">
+</head>
+<body id="principal" onload="app.explorercheck()">
+<layout-curso></layout-curso>
+<!--div id="result" style="color: rgba(138, 138, 138, 1);
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 2rem; padding: 3%; width: 50%; margin: 0 auto"></div-->
+</body></html>
